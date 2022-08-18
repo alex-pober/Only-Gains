@@ -24,7 +24,7 @@ def get_one_link(id):
 @login_required
 def new_post():
     data = request.json
-    form = NewLinkForm()
+    form = LinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         link = Link(
@@ -41,7 +41,7 @@ def new_post():
 @link_routes.route('/<id>', methods=["PUT"])
 @login_required
 def update_link(id):
-    form = NewLinkForm()
+    form = LinkForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         link = Link.query.get(id)
@@ -59,4 +59,3 @@ def delete_link(id):
     db.session.delete(link)
     db.session.commit()
     return "Link deleted"
-
