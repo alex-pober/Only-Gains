@@ -29,3 +29,7 @@ def new_workout():
         db.session.commit()
         return workout.to_dict()
     return (form.errors)
+
+#PUT
+
+#DELETE
