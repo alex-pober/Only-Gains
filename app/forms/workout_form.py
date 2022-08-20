@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, ValidationError
 # from app.models import Workout
 
 class WorkoutForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired])
+    title = StringField('Title', validators=[DataRequired()])
     notes = TextAreaField('Notes')

@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 class ExerciseForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired])
+    title = StringField('Title', validators=[DataRequired()])
     reps = StringField('Reps')

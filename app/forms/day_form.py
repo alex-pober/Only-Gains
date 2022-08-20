@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, ValidationError
 # from app.models import Link
 
 class DayForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired])
-    description = StringField('Description', validators=[DataRequired])
+    title = StringField('Title', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
