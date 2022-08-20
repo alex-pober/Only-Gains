@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Workout, Day
-from app.forms import WorkoutForm
+from app.forms import DayForm
 
 day_routes = Blueprint('days', __name__)
 
@@ -16,7 +16,7 @@ def get_days(id):
 @login_required
 def new_day():
     data = request.json
-    form = WorkoutForm()
+    form = DayForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         day = Day(
@@ -28,3 +28,7 @@ def new_day():
         db.session.commit()
         return day.to_dict()
     return (form.errors)
+
+#PUT
+
+#DELETE
