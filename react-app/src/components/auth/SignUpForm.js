@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,6 +46,30 @@ const SignUpForm = () => {
   }
 
   return (
+    <>
+
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField label="User Name" variant="outlined" required
+        value={username}
+        onChange={updateUsername}/>
+      <TextField label="Email" variant="outlined" required
+        value={email}
+        onChange={updateEmail}/>
+      <TextField label="Password" variant="outlined" required
+        value={password}
+        onChange={updatePassword}/>
+      <TextField label="Repeat Password" variant="outlined" required
+        value={repeatPassword}
+        onChange={updateRepeatPassword}/>
+      <Button variant="contained">Submit</Button>
+    </Box>
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
@@ -88,6 +115,7 @@ const SignUpForm = () => {
       </div>
       <button type='submit'>Sign Up</button>
     </form>
+    </>
   );
 };
 
