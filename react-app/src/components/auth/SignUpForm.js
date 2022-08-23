@@ -5,15 +5,22 @@ import { signUp } from '../../store/session';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [open, setOpen] = React.useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    setOpen(true);
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -47,7 +54,20 @@ const SignUpForm = () => {
 
   return (
     <>
-
+    {errors.map((error, ind) => (
+      // <div key={ind}>{error}</div>
+      <Snackbar
+        anchorOrigin = {{ vertical: 'top', horizontal: 'center' }}
+        open={true}
+        key={ind}
+        // message = {error}
+        autoHideDuration = {500}
+      >
+        <Alert severity="error" sx={{ width: '100%' }}>
+         {error}
+        </Alert>
+      </Snackbar>
+    ))}
     <Box
       component="form"
       sx={{
@@ -55,22 +75,27 @@ const SignUpForm = () => {
       }}
       noValidate
       autoComplete="off"
+      onSubmit={onSignUp}
     >
-      <TextField label="User Name" variant="outlined" required
-        value={username}
-        onChange={updateUsername}/>
-      <TextField label="Email" variant="outlined" required
-        value={email}
-        onChange={updateEmail}/>
-      <TextField label="Password" variant="outlined" required
-        value={password}
-        onChange={updatePassword}/>
-      <TextField label="Repeat Password" variant="outlined" required
-        value={repeatPassword}
-        onChange={updateRepeatPassword}/>
-      <Button variant="contained">Submit</Button>
+        <TextField label="User Name" variant="outlined" margin="normal"
+          type='text'
+          value={username}
+          onChange={updateUsername}/>
+        <TextField label="Email" variant="outlined" margin="normal"
+          type='text'
+          value={email}
+          onChange={updateEmail}/>
+        <TextField label="Password" variant="outlined" margin="normal"
+          type='password'
+          value={password}
+          onChange={updatePassword}/>
+        <TextField label="Repeat Password" variant="outlined" margin="normal" required
+          type='password'
+          value={repeatPassword}
+          onChange={updateRepeatPassword}/>
+        <Button variant="contained" type='submit'>Submit</Button>
     </Box>
-    <form onSubmit={onSignUp}>
+    {/* <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -114,7 +139,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <button type='submit'>Sign Up</button>
-    </form>
+    </form> */}
     </>
   );
 };
