@@ -9,7 +9,7 @@ class Link(db.Model):
     link = db.Column(db.String(3000), nullable=False)
     click = db.Column(db.Integer)
 
-    users = db.relationship("User", back_populates="links")
+    # users = db.relationship("User", back_populates="links")
 
     def to_dict(self):
 

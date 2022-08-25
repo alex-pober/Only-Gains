@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(150))
     profilePicImg = db.Column(db.String(2000))
 
-    workouts = db.relationship('Workout', back_populates='users', cascade="all,delete")
+    # workouts = db.relationship('Workout', back_populates='users', cascade="all,delete")
 
     @property
     def password(self):

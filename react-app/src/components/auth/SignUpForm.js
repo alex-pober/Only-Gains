@@ -14,6 +14,7 @@ const SignUpForm = () => {
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -26,7 +27,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, name));
       if (data) {
         setErrors(data)
       }
@@ -47,6 +48,10 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateName = (e) => {
+    setName(e.target.value);
   };
 
   if (user) {
@@ -84,7 +89,7 @@ const SignUpForm = () => {
       <Stack
         spacing={2}
       >
-        <TextField label="User Name" variant="outlined" margin="normal"
+        <TextField label="Username" variant="outlined" margin="normal"
           type='text'
           value={username}
           onChange={updateUsername}/>
@@ -100,6 +105,10 @@ const SignUpForm = () => {
           type='password'
           value={repeatPassword}
           onChange={updateRepeatPassword}/>
+        <TextField label="Display Name" variant="outlined" margin="normal" required
+          type='text'
+          value={name}
+          onChange={updateName}/>
         <Button variant="contained" type='submit'>Submit</Button>
       </Stack>
     </Box>
