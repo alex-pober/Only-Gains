@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+import Stack from '@mui/material/Stack';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -71,12 +72,18 @@ const SignUpForm = () => {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        '& > :not(style)': { mx: "auto", width: '25ch' },
+        display: 'flex',
+        justifyContent: 'center',
+        top: '50%'
       }}
       noValidate
       autoComplete="off"
       onSubmit={onSignUp}
     >
+      <Stack
+        spacing={2}
+      >
         <TextField label="User Name" variant="outlined" margin="normal"
           type='text'
           value={username}
@@ -94,6 +101,7 @@ const SignUpForm = () => {
           value={repeatPassword}
           onChange={updateRepeatPassword}/>
         <Button variant="contained" type='submit'>Submit</Button>
+      </Stack>
     </Box>
     {/* <form onSubmit={onSignUp}>
       <div>
