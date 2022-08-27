@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextareaAutosize';
 import { flexbox } from '@mui/system';
 import EditIcon from '@mui/icons-material/Edit';
-import IconButton from '@mui/material/IconButton';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -23,11 +23,24 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 
-function User(props) {
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import InfoIcon from '@mui/icons-material/Info';
+import LinkIcon from '@mui/icons-material/Link';
+import AddIcon from '@mui/icons-material/Add';
+import { getNativeSelectUtilityClasses } from '@mui/material';
+
+function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
-  const { window } = props;
+  // const { window } = props;
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   useEffect(() => {
     if (!userId) {
       return;
@@ -65,7 +78,13 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
-
+const openMenu = Boolean(anchorEl);
+const handleClick = (event) => {
+  setAnchorEl(event.currentTarget);
+};
+const handleClose = () => {
+  setAnchorEl(null);
+};
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -73,6 +92,7 @@ const Puller = styled(Box)(({ theme }) => ({
 
   return (
     <>
+
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -81,9 +101,67 @@ const Puller = styled(Box)(({ theme }) => ({
             </Typography>
           </Grid>
           <Grid item>
-            <Typography gutterBottom variant="h6" component="div">
+            {/* <Typography gutterBottom variant="h6" component="div">
               side
-            </Typography>
+            </Typography> */}
+            <MoreVertIcon
+            onClick={handleClick}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+          </MoreVertIcon>
+          <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={openMenu}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: 'visible',
+                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                  mt: 1.5,
+                  '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                  },
+                  '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+              <MenuItem>
+                <ListItemIcon>
+                  <InfoIcon fontSize="small" />
+                </ListItemIcon>
+                Edit Info
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <LinkIcon fontSize="small" />
+                </ListItemIcon>
+                Edit Links
+              </MenuItem>
+            </Menu>
+
           </Grid>
         </Grid>
         <Typography color="text.secondary" variant="body2">
@@ -92,9 +170,12 @@ const Puller = styled(Box)(({ theme }) => ({
           {/* <IconButton color="primary" aria-label="upload picture" component="label">
             <EditIcon fontSize="large"/>
           </IconButton> */}
-      </Box>
       <Divider variant="middle"> <Button onClick={toggleDrawer(true)}>My Links</Button> </Divider>
-      <CssBaseline />
+      <Button variant="outlined" startIcon={<AddIcon />}>
+        Add workout
+      </Button>
+      </Box>
+
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
@@ -126,7 +207,7 @@ const Puller = styled(Box)(({ theme }) => ({
           }}
         >
           <Puller />
-          <Typography sx={{ p: 2, color: 'text.secondary' }}>51 results</Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary' }}>Links</Typography>
         </StyledBox>
         <StyledBox
           sx={{
@@ -137,55 +218,6 @@ const Puller = styled(Box)(({ theme }) => ({
           }}
         >
           <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
-                    <Chip
             label="Clickable Link"
             component="a"
             href="#basic-chip"
