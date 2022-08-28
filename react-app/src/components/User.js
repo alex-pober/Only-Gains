@@ -1,40 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import { flexbox } from '@mui/system';
-import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
-
 import Chip from '@mui/material/Chip';
-
-import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import { grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
-
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import InfoIcon from '@mui/icons-material/Info';
 import LinkIcon from '@mui/icons-material/Link';
-import AddIcon from '@mui/icons-material/Add';
-import { getNativeSelectUtilityClasses } from '@mui/material';
-import Modal from '@mui/material/Modal';
+import CreateDayModal from './CreateDayModal';
 
 
 function User() {
@@ -43,7 +25,7 @@ function User() {
   // const { window } = props;
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [openModal, setOpenModal] = React.useState(false);
+
   useEffect(() => {
     if (!userId) {
       return;
@@ -81,19 +63,6 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '75%',
-  height: '40%',
-  bgcolor: 'background.paper',
-  borderRadius: '25px',
-  boxShadow: 24,
-  p: 4,
-};
-
 const openMenu = Boolean(anchorEl);
 const handleClick = (event) => {
   setAnchorEl(event.currentTarget);
@@ -105,44 +74,8 @@ const toggleDrawer = (newOpen) => () => {
   setOpen(newOpen);
 };
 
-const handleOpenModal = () => setOpenModal(true);
-const handleCloseModal = () => setOpenModal(false);
-
   return (
     <>
-      {/* ------------ MODAL SECTION START ------------ */}
-      <Modal
-        open={openModal}
-        onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    height: '100%'
-                    }}>
-            <Typography variant="h5" component="h2" gutterBottom>
-              Create Workout Day
-            </Typography>
-            <TextField sx={{ my: 1}}
-              label="Day"
-              helperText="Ex: Day 1, Push, Pull, etc."
-              variant="filled"
-              gutterBottom
-            />
-            <TextField sx={{ my: 1}}
-              label="Description"
-              helperText="Ex: Chest/Tris/Shoulder, Rest Day, etc."
-              variant="filled"
-            />
-            <Button sx={{ mx: 'auto', my: 1}} variant="contained">Submit</Button>
-          </Box>
-        </Box>
-      </Modal>
-      {/* ------------ MODAL SECTION END ------------ */}
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -222,6 +155,9 @@ const handleCloseModal = () => setOpenModal(false);
             <EditIcon fontSize="large"/>
           </IconButton> */}
       </Box>
+      {/* ------------ MODAL SECTION START ------------ */}
+      <CreateDayModal />
+      {/* ------------ MODAL SECTION END ------------ */}
 
 
       <Global
@@ -232,12 +168,6 @@ const handleCloseModal = () => setOpenModal(false);
           },
         }}
       />
-
-      <Stack container spacing={2}>
-        <Button onClick={handleOpenModal} sx={{ my: 0, mx: 14 }} variant="outlined" startIcon={<AddIcon />}>
-          Add workout
-        </Button>
-      </Stack>
 
       <SwipeableDrawer
         anchor="bottom"
