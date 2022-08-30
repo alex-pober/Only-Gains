@@ -37,13 +37,18 @@ export const createWorkout = (user_id, title, notes) => async (dispatch) => {
             notes
         })
     })
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setWorkout(data))
+        return data
+    }
 }
 
 
 export default function reducer(state = initialState, action){
     switch (action.type){
-        // case CREATE_WORKOUT:
-        //     return {workout: action.payload}
+        case CREATE_WORKOUT:
+            return {...state, [action.payload.id]: action.payload}
         case GET_USER_WORKOUTS:
             return {...action.payload.workout}
 
