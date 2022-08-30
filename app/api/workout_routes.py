@@ -9,11 +9,11 @@ workout_routes = Blueprint('workouts', __name__)
 #GET /api/workouts/:userId
 @workout_routes.route('/<id>')
 def get_workout(id):
-    workout = Workout.query.filter(Workout.user_id == id).all()
-    return (workout.to_dict())
+    workouts = Workout.query.filter(Workout.user_id == id).all()
+    return {'workout': [workout.to_dict() for workout in workouts]}
 
 #POST /api/workouts/:userId
-@workout_routes.route('/<id>', methods=["POST"])
+@workout_routes.route('/createworkout', methods=['POST'])
 @login_required
 def new_workout():
     data = request.json

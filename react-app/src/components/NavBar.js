@@ -15,10 +15,11 @@ const NavBar = () => {
     <AppBar position="static" color="default">
       <Toolbar variant="dense">
           <img src={OnlyGainsLogo} style={{height: 45}} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
           </Typography>
           <Button color="inherit" href="/sign-up">Sign Up</Button>
           <Button color="inherit" href="/login">Login</Button>
+          <LogoutButton />
         </Toolbar>
     </AppBar>
 

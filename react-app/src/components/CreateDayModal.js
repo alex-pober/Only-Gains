@@ -41,14 +41,13 @@ return (
                         justifyContent: 'center',
                         height: '100%'
                         }}>
-                <Typography variant="h5" component="h2" gutterBottom>
+                <Typography variant="h5" component="h2">
                 Create Workout Day
                 </Typography>
                 <TextField sx={{ my: 1}}
                 label="Day"
                 helperText="Ex: Day 1, Push, Pull, etc."
                 variant="filled"
-                gutterBottom
                 />
                 <TextField sx={{ my: 1}}
                 label="Description"

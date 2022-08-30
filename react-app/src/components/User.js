@@ -17,7 +17,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import InfoIcon from '@mui/icons-material/Info';
 import LinkIcon from '@mui/icons-material/Link';
 import CreateDayModal from './CreateDayModal';
-
+import CreateWorkout from './CreateWorkout'
+import FetchingUserWorkouts from './FetchingUserWorkouts';
 
 function User() {
   const [user, setUser] = useState({});
@@ -79,7 +80,7 @@ const toggleDrawer = (newOpen) => () => {
       <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h4" component="div">
+            <Typography gutterBottom variant="h4">
               {user.username}
             </Typography>
           </Grid>
@@ -156,6 +157,8 @@ const toggleDrawer = (newOpen) => () => {
           </IconButton> */}
       </Box>
       {/* ------------ MODAL SECTION START ------------ */}
+      <FetchingUserWorkouts />
+      <CreateWorkout />
       <CreateDayModal />
       {/* ------------ MODAL SECTION END ------------ */}
 
