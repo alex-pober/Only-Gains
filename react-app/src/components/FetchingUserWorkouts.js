@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import PropTypes from 'prop-types';
 import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
@@ -14,8 +15,9 @@ function FetchingUserWorkouts(){
   const dispatch = useDispatch();
   const user = useSelector(state => state.session?.user);
   const workouts = useSelector(state => state.workout)
-  const [value, setValue] = React.useState('1');
-  console.log(workouts)
+  const [value, setValue] = useState(0);
+  console.log(value)
+  console.log(setValue)
 
   useEffect(() => {
     dispatch(getUserWorkouts(user?.id))
@@ -29,18 +31,21 @@ return (
 <>
   <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-    <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto">
+    <Tabs value={value} onChange={handleChange} variant="scrollable">
       {Object.values(workouts).map((value, index) => {
-        console.log(value)
         return (
-                <Tab label={value?.title} value="1" />
+                <Tab label={value?.title} value={index} />
         )
         })}
-    </TabList>
-            </Box>
-            <TabPanel value="1">
-              Item One
-            </TabPanel>
+    </Tabs>
+  </Box>
+    {Object.values(workouts).map((value, index) => {
+        return (
+          <TabPanel value={index}>
+            {value?.notes}
+          </TabPanel>
+        )
+        })}
   </TabContext>
 </>
 )}
