@@ -9,6 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import { styled } from '@mui/material/styles';
 import { getUserWorkouts } from '../store/workout'
 
 import CreateDayModal from './CreateDayModal';
@@ -17,16 +18,17 @@ import FetchingUserTrainingDays from './FetchingUserTrainingDays';
 function FetchingUserWorkouts(){
   const dispatch = useDispatch();
   const user = useSelector(state => state.session?.user);
-  const workouts = useSelector(state => state.workout)
-  const [value, setValue] = useState(0);
-
   useEffect(() => {
     dispatch(getUserWorkouts(user?.id))
   }, [dispatch])
+  const workouts = useSelector(state => state.workout)
+  const [value, setValue] = useState(0);
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
 
 return (
 <>
