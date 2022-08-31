@@ -11,13 +11,14 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { getUserWorkouts } from '../store/workout'
 
+import CreateDayModal from './CreateDayModal';
+import FetchingUserTrainingDays from './FetchingUserTrainingDays';
+
 function FetchingUserWorkouts(){
   const dispatch = useDispatch();
   const user = useSelector(state => state.session?.user);
   const workouts = useSelector(state => state.workout)
   const [value, setValue] = useState(0);
-  console.log(value)
-  console.log(setValue)
 
   useEffect(() => {
     dispatch(getUserWorkouts(user?.id))
@@ -41,7 +42,9 @@ return (
   </Box>
     {Object.values(workouts).map((value, index) => {
         return (
-          <TabPanel value={index}>
+          <TabPanel value={index} sx={{ p: 0}}>
+            <FetchingUserTrainingDays workout_id={value?.id}/>
+            <CreateDayModal workout_id={value?.id} />
             {value?.notes}
           </TabPanel>
         )

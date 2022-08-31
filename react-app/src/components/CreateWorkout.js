@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { createWorkout } from '../store/workout';
 
 function CreateWorkout() {
-    const [openModal, setOpenModal] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const [title, setTitle] = useState('');
     const [notes, setNotes] = useState('');
     const dispatch = useDispatch();
@@ -61,7 +61,7 @@ return (
                         justifyContent: 'center',
                         height: '100%'
                         }}>
-                <Typography variant="h5" component="h2">
+                <Typography variant="h5">
                 Create Workout
                 </Typography>
                 <TextField sx={{ my: 1}}
@@ -85,7 +85,7 @@ return (
         </Box>
     </Modal>
     <Stack container spacing={2}>
-    <Button onClick={handleOpenModal} sx={{ my: 0, mx: 12 }} variant="outlined" startIcon={<AddIcon />}>
+    <Button onClick={handleOpenModal} variant="text" startIcon={<AddIcon />} disableElevation>
         Create Workout
     </Button>
     </Stack>

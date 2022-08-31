@@ -1,11 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
-import workout from './workout'
+import workout from './workout';
+import days from './days'
 
 const rootReducer = combineReducers({
   session,
-  workout
+  workout,
+  days
 });
 
 

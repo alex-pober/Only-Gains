@@ -19,6 +19,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import CreateDayModal from './CreateDayModal';
 import CreateWorkout from './CreateWorkout'
 import FetchingUserWorkouts from './FetchingUserWorkouts';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function User() {
   const [user, setUser] = useState({});
@@ -77,7 +78,7 @@ const toggleDrawer = (newOpen) => () => {
 
   return (
     <>
-      <Box sx={{ my: 3, mx: 2 }}>
+      <Box sx={{ mt: 3, mb:0, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h4">
@@ -144,14 +145,19 @@ const toggleDrawer = (newOpen) => () => {
                 </ListItemIcon>
                 Edit Links
               </MenuItem>
+              <MenuItem>
+              </MenuItem>
             </Menu>
 
           </Grid>
         </Grid>
+        {/* THIS CAUSES AN ERROR DIV INSIDE P TAG */}
         <Typography color="text.secondary" variant="body2">
           {user.bio}
-          <Divider variant="middle" sx={{ my: 0 }}> <Button onClick={toggleDrawer(true)}>My Links</Button> </Divider>
         </Typography>
+
+        <Divider variant="middle" sx={{ my: 0 }}><Button onClick={toggleDrawer(true)}>My Links</Button></Divider>
+
           {/* <IconButton color="primary" aria-label="upload picture" component="label">
             <EditIcon fontSize="large"/>
           </IconButton> */}
@@ -159,7 +165,8 @@ const toggleDrawer = (newOpen) => () => {
       {/* ------------ MODAL SECTION START ------------ */}
       <FetchingUserWorkouts />
       <CreateWorkout />
-      <CreateDayModal />
+
+      {/* <CreateDayModal /> */}
       {/* ------------ MODAL SECTION END ------------ */}
 
 

@@ -8,11 +8,11 @@ day_routes = Blueprint('days', __name__)
 #GET /api/days/workout_id
 @day_routes.route('<id>')
 def get_days(id):
-    day = Day.query.filter(Day.workout_id == id).all()
-    return (day.to_dict())
+    days = Day.query.filter(Day.workout_id == id).all()
+    return {'day': [day.to_dict() for day in days]}
 
 #POST /api/days/
-@day_routes.route('/', methods=["POST"])
+@day_routes.route('/createTrainingDay', methods=["POST"])
 @login_required
 def new_day():
     data = request.json

@@ -16,5 +16,5 @@ class Day(db.Model):
             'id': self.id,
             'workout_id': self.workout_id,
             'title': self.title,
-            'description': self.link,
+            'description': self.description,
         }
