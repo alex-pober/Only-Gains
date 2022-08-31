@@ -12,7 +12,7 @@ import OnlyGainsLogo from '../assets/OnlyGainsLogo.png'
 
 const NavBar = () => {
   return (
-    <AppBar position="static" color="default">
+    <AppBar position="static" color="inherit">
       <Toolbar variant="dense">
           <img src={OnlyGainsLogo} style={{height: 45}} />
           <Typography variant="h6" sx={{ flexGrow: 1 }}>

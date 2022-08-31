@@ -78,10 +78,10 @@ const toggleDrawer = (newOpen) => () => {
 
   return (
     <>
-      <Box sx={{ mt: 3, mb:0, mx: 2 }}>
+      <Box sx={{ pt: 1, mb:0, px: 2, bgcolor: 'background.default' }}>
         <Grid container alignItems="center">
           <Grid item xs>
-            <Typography gutterBottom variant="h4">
+            <Typography gutterBottom variant="h5">
               {user.username}
             </Typography>
           </Grid>
@@ -151,7 +151,6 @@ const toggleDrawer = (newOpen) => () => {
 
           </Grid>
         </Grid>
-        {/* THIS CAUSES AN ERROR DIV INSIDE P TAG */}
         <Typography color="text.secondary" variant="body2">
           {user.bio}
         </Typography>
