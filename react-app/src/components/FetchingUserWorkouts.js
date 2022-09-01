@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import PropTypes from 'prop-types';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { styled } from '@mui/material/styles';
 import { getUserWorkouts } from '../store/workout'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import { positions } from '@mui/system';
 
 
 import CreateDayModal from './CreateDayModal';
@@ -61,10 +55,10 @@ return (
 <>
   <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-    <Tabs value={value} onChange={handleChange} variant="scrollable" unmountOnExit>
+    <Tabs sx={{minHeight: "0px"}} value={value} onChange={handleChange} variant="scrollable" unmountOnExit>
       {Object.values(workouts).map((value, index) => {
         return (
-                <Tab label={value?.title} value={index} />
+          <Tab label={value?.title} value={index} />
         )
         })}
     </Tabs>
@@ -73,64 +67,64 @@ return (
         return (
           <TabPanel value={index} sx={{ p: 0, bgcolor: 'background.default'}}>
             <FetchingUserTrainingDays workout_id={value?.id}/>
+            <CreateDayModal workout_id={value?.id} />
             <Box textAlign='center'>
               <Button onClick={handleOpen} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
                 align='center'
               >Open Notes</Button>
             </Box>
-            <CreateDayModal workout_id={value?.id} />
-            <div>
-              <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                  timeout: 500,
-                }}
-              >
-                <Slide direction="up" in={open}>
-                  <Box sx={style}>
-                    <Box sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'flex-start',
-                        alignItems: 'flex-end',
-                        width: '100%'
-                        }}>
-                      <IconButton onClick={handleClose} right sx={{
-                          position: 'absolute',
-                          p: 3,
-                          m: 'auto'
-                          }}>
-                        <CloseIcon/>
-                      </IconButton>
-                    </Box>
-                    <Box  sx={{
-                              display: 'flex',
-                              flexDirection: 'column',
-                              justifyContent: 'center',
-                              height: 'auto',
-                              p: 3
-                              }}
-                    >
-                      <Typography id="transition-modal-title" variant="h6" component="h2">
-                        Notes
-                      </Typography>
-                      <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                        {value?.notes}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Slide>
-              </Modal>
-            </div>
           </TabPanel>
         )
         })}
   </TabContext>
+  <div>
+    <Modal
+      aria-labelledby="transition-modal-title"
+      aria-describedby="transition-modal-description"
+      open={open}
+      onClose={handleClose}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Slide direction="up" in={open}>
+        <Box sx={style}>
+          <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              alignItems: 'flex-end',
+              width: '100%'
+              }}>
+            <IconButton onClick={handleClose} right sx={{
+                position: 'absolute',
+                p: 3,
+                m: 'auto'
+                }}>
+              <CloseIcon/>
+            </IconButton>
+          </Box>
+          <Box  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    height: 'auto',
+                    p: 3
+                    }}
+          >
+            <Typography id="transition-modal-title" variant="h6" component="h2">
+              Notes
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+              {value?.notes}
+            </Typography>
+          </Box>
+        </Box>
+      </Slide>
+    </Modal>
+  </div>
 </>
 )}
 

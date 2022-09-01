@@ -20,35 +20,16 @@ import CreateDayModal from './CreateDayModal';
 import CreateWorkout from './CreateWorkout'
 import FetchingUserWorkouts from './FetchingUserWorkouts';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
-function User() {
-  const [user, setUser] = useState({});
-  const { userId }  = useParams();
-  // const { window } = props;
-  const [open, setOpen] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  useEffect(() => {
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
-
-  if (!user) {
-    return null;
-  }
-
-const drawerBleeding = 56;
+import Modal from '@mui/material/Modal';
+import Slide from '@mui/material/Slide';
+import Backdrop from '@mui/material/Backdrop';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
   backgroundColor:
-    theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
+  theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -65,13 +46,46 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
-const openMenu = Boolean(anchorEl);
-const handleClick = (event) => {
-  setAnchorEl(event.currentTarget);
+const style = {
+  position: 'absolute',
+  top: '50%',
+  width: '96%',
+  left: '2%',
+  right: '2%',
+  height: '40%',
+  bgcolor: 'background.paper',
+  borderRadius: '25px',
+  boxShadow: 24,
 };
-const handleClose = () => {
-  setAnchorEl(null);
-};
+
+const drawerBleeding = 56;
+
+function User() {
+  const [user, setUser] = useState({});
+  const { userId }  = useParams();
+  const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/users/${userId}`);
+      const user = await response.json();
+      setUser(user);
+    })();
+  }, [userId]);
+
+  if (!user) {
+    return null;
+  }
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
+
+
 const toggleDrawer = (newOpen) => () => {
   setOpen(newOpen);
 };
@@ -86,69 +100,59 @@ const toggleDrawer = (newOpen) => () => {
             </Typography>
           </Grid>
           <Grid item>
-            {/* <Typography gutterBottom variant="h6" component="div">
-              side
-            </Typography> */}
             <MoreVertIcon
-            onClick={handleClick}
+            onClick={handleOpen}
             size="small"
             sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
           >
           </MoreVertIcon>
-          <Menu
-              anchorEl={anchorEl}
-              id="account-menu"
-              open={openMenu}
-              onClose={handleClose}
-              onClick={handleClose}
-              PaperProps={{
-                elevation: 0,
-                sx: {
-                  overflow: 'visible',
-                  filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                  mt: 1.5,
-                  '& .MuiAvatar-root': {
-                    width: 32,
-                    height: 32,
-                    ml: -0.5,
-                    mr: 1,
-                  },
-                  '&:before': {
-                    content: '""',
-                    display: 'block',
-                    position: 'absolute',
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: 'background.paper',
-                    transform: 'translateY(-50%) rotate(45deg)',
-                    zIndex: 0,
-                  },
-                },
-              }}
-              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            >
-              <MenuItem>
-                <ListItemIcon>
-                  <InfoIcon fontSize="small" />
-                </ListItemIcon>
-                Edit Info
-              </MenuItem>
-              <MenuItem>
-                <ListItemIcon>
-                  <LinkIcon fontSize="small" />
-                </ListItemIcon>
-                Edit Links
-              </MenuItem>
-              <MenuItem>
-              </MenuItem>
-            </Menu>
-
+            <div>
+              <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={openModal}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <Slide direction="up" in={openModal}>
+                  <Box sx={style}>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-end',
+                        width: '100%'
+                        }}>
+                      <IconButton onClick={handleClose} right sx={{
+                          position: 'absolute',
+                          p: 3,
+                          m: 'auto'
+                          }}>
+                        <CloseIcon/>
+                      </IconButton>
+                    </Box>
+                    <Box  sx={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'center',
+                              height: 'auto',
+                              p: 3
+                              }}
+                    >
+                      <Typography id="transition-modal-title" variant="h6" component="h2">
+                        Dashboard
+                      </Typography>
+                      <CreateWorkout />
+                      <Divider />
+                    </Box>
+                  </Box>
+                </Slide>
+              </Modal>
+            </div>
           </Grid>
         </Grid>
         <Typography color="text.secondary" variant="body2">
@@ -156,16 +160,9 @@ const toggleDrawer = (newOpen) => () => {
         </Typography>
 
         <Divider variant="middle" sx={{ my: 0 }}><Button onClick={toggleDrawer(true)}>My Links</Button></Divider>
-
-          {/* <IconButton color="primary" aria-label="upload picture" component="label">
-            <EditIcon fontSize="large"/>
-          </IconButton> */}
       </Box>
       {/* ------------ MODAL SECTION START ------------ */}
       <FetchingUserWorkouts />
-      <CreateWorkout />
-
-      {/* <CreateDayModal /> */}
       {/* ------------ MODAL SECTION END ------------ */}
 
 

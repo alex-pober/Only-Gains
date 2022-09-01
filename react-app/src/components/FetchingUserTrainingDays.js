@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import {getTrainingDays} from '../store/days'
+import {getExercises} from '../store/exercise'
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -8,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import CreateExercise from './CreateExcercise';
+import FetchingUserExercises from './FetchingUserExercises';
 
 function FetchingUserTrainingDays({workout_id}){
   const dispatch = useDispatch();
@@ -31,7 +34,7 @@ return (workout_id == undefined) ? (
     {Object.values(trainingDays).map((value, index) => {
       return (
         <>
-          <Accordion expanded={expanded === index} onChange={handleChange(index)}>
+          <Accordion expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"
@@ -42,10 +45,9 @@ return (workout_id == undefined) ? (
             </Typography>
             <Typography sx={{ color: 'text.secondary' }}>{value?.description}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              {value?.description}
-            </Typography>
+          <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
+            <FetchingUserExercises day_id={value?.id}/>
+            <CreateExercise day_id={value?.id}/>
           </AccordionDetails>
           </Accordion>
         </>

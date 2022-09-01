@@ -8,13 +8,14 @@ exercise_routes = Blueprint('exercises', __name__)
 #GET /api/exercise/day_id
 @exercise_routes.route('<id>')
 def get_exercises(id):
-    exercise = Exercise.query.filter(Exercise.day_id == id).all()
-    return (exercise.to_dict())
+    exercises = Exercise.query.filter(Exercise.day_id == id).all()
+    return {'exercises': [exercise.to_dict() for exercise in exercises]}
 
 #POST /api/days/
-@dexercise_routes.route('/', methods=["POST"])
+@exercise_routes.route('/', methods=["POST"])
 @login_required
-data = request.json
+def new_exercise():
+    data = request.json
     form = ExerciseForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -25,7 +26,7 @@ data = request.json
         )
         db.session.add(exercise)
         db.session.commit()
-        return day.to_dict()
+        return exercise.to_dict()
     return (form.errors)
 
 #PUT

@@ -29,11 +29,11 @@ function CreateDayModal({workout_id}) {
 
 const updateTitle = (e) => {
     setTitle(e.target.value);
-  };
+    };
 
-  const updateDescription = (e) => {
+const updateDescription = (e) => {
     setDescription(e.target.value);
-  };
+    };
 
  const style = {
     position: 'absolute',

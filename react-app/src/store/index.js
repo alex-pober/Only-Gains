@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import workout from './workout';
 import days from './days'
+import exercises from './exercise'
 
 const rootReducer = combineReducers({
   session,
   workout,
-  days
+  days,
+  exercises
 });
 
 

@@ -85,9 +85,9 @@ return (
         </Box>
     </Modal>
     <Stack container spacing={2}>
-    <Button onClick={handleOpenModal} variant="text" startIcon={<AddIcon />} disableElevation>
-        Create Workout
-    </Button>
+        <Button onClick={handleOpenModal} variant="text" startIcon={<AddIcon />}>
+            Create NEW Workout
+        </Button>
     </Stack>
 </>
 )}
