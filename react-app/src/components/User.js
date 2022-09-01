@@ -11,20 +11,14 @@ import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import InfoIcon from '@mui/icons-material/Info';
-import LinkIcon from '@mui/icons-material/Link';
-import CreateDayModal from './CreateDayModal';
 import CreateWorkout from './CreateWorkout'
 import FetchingUserWorkouts from './FetchingUserWorkouts';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Modal from '@mui/material/Modal';
 import Slide from '@mui/material/Slide';
 import Backdrop from '@mui/material/Backdrop';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import Container from '@mui/material/Container';
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
@@ -91,7 +85,7 @@ const toggleDrawer = (newOpen) => () => {
 };
 
   return (
-    <>
+    <Container maxWidth="sm" disableGutters>
       <Box sx={{ pt: 1, mb:0, px: 2, bgcolor: 'background.default' }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -217,7 +211,7 @@ const toggleDrawer = (newOpen) => () => {
           />
         </StyledBox>
       </SwipeableDrawer>
-    </>
+    </Container>
   );
 }
 export default User;

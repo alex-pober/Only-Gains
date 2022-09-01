@@ -46,7 +46,7 @@ return (
     value={title}
     onChange={updateTitle}
   />
-  <TextField sx={{ mr: 1}}
+  <TextField sx={{ mr: 1, width: 1/4}}
     size="small"
     margin="dense"
     label="Reps"
@@ -58,7 +58,7 @@ return (
   <Button
     size="small"
     variant="text"
-    type='submit'>Submit
+    type='submit'>Add
   </Button>
 </Box>
 )}
