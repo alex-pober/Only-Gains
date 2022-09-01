@@ -6,23 +6,27 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 function FetchingUserTrainingDays({workout_id}){
   const dispatch = useDispatch();
   const trainingDays = useSelector(state => state.days)
   const [expanded, setExpanded] = React.useState(false);
-  console.log(trainingDays)
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   useEffect(() => {
-    dispatch(getTrainingDays(workout_id))
-  }, [dispatch])
+    dispatch(getTrainingDays(+workout_id))
+  }, [+workout_id])
 
-return(
+return (workout_id == undefined) ? (
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mx: 'auto', my: 'auto', minHeight: '350px' }}>
+    <CircularProgress/>
+  </Box>
+) : (
 <Box sx={{mx: 0}}>
     {Object.values(trainingDays).map((value, index) => {
       return (
