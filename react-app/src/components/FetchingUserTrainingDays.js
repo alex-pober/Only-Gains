@@ -22,6 +22,9 @@ function FetchingUserTrainingDays({workout_id}){
   };
 
   useEffect(() => {
+    if (workout_id === undefined){
+      return;
+    }
     dispatch(getTrainingDays(+workout_id))
   }, [+workout_id])
 
@@ -34,7 +37,7 @@ return (workout_id == undefined) ? (
     {Object.values(trainingDays).map((value, index) => {
       return (
         <>
-          <Accordion expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }}>
+          <Accordion expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }} disableGutters>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1bh-content"

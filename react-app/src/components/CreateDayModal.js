@@ -6,9 +6,13 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
-
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Chip from '@mui/material/Chip';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
 function CreateDayModal({workout_id}) {
  const [openModal, setOpenModal] = React.useState(false);
@@ -87,11 +91,33 @@ return (
             </Box>
         </Box>
     </Modal>
-    <Stack container spacing={2}>
-    <Button onClick={handleOpenModal} sx={{ my: 0, mx: 8 }} variant="outlined" startIcon={<AddIcon />}>
-        Add training day
-    </Button>
-    </Stack>
+    <Accordion disableGutters>
+        <AccordionSummary expandIcon={<Chip onClick={handleOpenModal} icon={<AddIcon />} label="Add" size='small' variant='outlined' color='success'/>}>
+            <Typography sx={{ width: '33%', flexShrink: 0, color: 'action.disabled' }}>
+            Day...
+            </Typography>
+            <Typography sx={{color: 'action.disabled'}}>Description...</Typography>
+            {/* <Chip onClick={handleOpenModal}
+                startIcon={<AddIcon />}
+                label="Add"
+            /> */}
+        </AccordionSummary>
+    </Accordion>
+    {/* <Stack
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+    >
+        <Chip onClick={handleOpenModal}
+            startIcon={<AddIcon />}
+            label="Add new workout"
+        />
+        <Chip onClick={handleOpenModal}
+            variant="outlined"
+            deleteIcon={<DeleteIcon />}
+            label="Delete Workout"
+        />
+    </Stack> */}
 </>
     )
 }

@@ -9,16 +9,15 @@ import { getUserWorkouts } from '../store/workout'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-
-
 import CreateDayModal from './CreateDayModal';
 import FetchingUserTrainingDays from './FetchingUserTrainingDays';
-
+import Accordion from '@mui/material/Accordion';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
 
 
 const style = {
@@ -68,63 +67,63 @@ return (
           <TabPanel value={index} sx={{ p: 0, bgcolor: 'background.default'}}>
             <FetchingUserTrainingDays workout_id={value?.id}/>
             <CreateDayModal workout_id={value?.id} />
-            <Box textAlign='center'>
-              <Button onClick={handleOpen} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
-                align='center'
-              >Open Notes</Button>
-            </Box>
+            <Accordion>
+              <Box textAlign='center'>
+                <Button onClick={handleOpen} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
+                  align='center'
+                >Open Notes</Button>
+              </Box>
+            </Accordion>
+            <Modal
+              aria-labelledby="transition-modal-title"
+              aria-describedby="transition-modal-description"
+              open={open}
+              onClose={handleClose}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500,
+              }}
+            >
+              <Slide direction="up" in={open}>
+                <Box sx={style}>
+                  <Box sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'flex-start',
+                      alignItems: 'flex-end',
+                      width: '100%'
+                      }}>
+                    <IconButton onClick={handleClose} right sx={{
+                        position: 'absolute',
+                        p: 3,
+                        m: 'auto'
+                        }}>
+                      <CloseIcon/>
+                    </IconButton>
+                  </Box>
+                  <Box  sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            height: 'auto',
+                            p: 3
+                            }}
+                  >
+                    <Typography id="transition-modal-title" variant="h6" component="h2">
+                      Notes
+                    </Typography>
+                    <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                      {value?.notes}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Slide>
+            </Modal>
           </TabPanel>
         )
         })}
   </TabContext>
-  <div>
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
-    >
-      <Slide direction="up" in={open}>
-        <Box sx={style}>
-          <Box sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              alignItems: 'flex-end',
-              width: '100%'
-              }}>
-            <IconButton onClick={handleClose} right sx={{
-                position: 'absolute',
-                p: 3,
-                m: 'auto'
-                }}>
-              <CloseIcon/>
-            </IconButton>
-          </Box>
-          <Box  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    height: 'auto',
-                    p: 3
-                    }}
-          >
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Notes
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              {value?.notes}
-            </Typography>
-          </Box>
-        </Box>
-      </Slide>
-    </Modal>
-  </div>
 </>
 )}
 
