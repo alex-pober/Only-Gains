@@ -2,19 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import OnlyGainsLogo from '../assets/OnlyGainsLogo.png'
+import LogoDark from '../assets/LogoDark.png'
+import LogoLight from '../assets/LogoLight.png'
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const NavBar = () => {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   return (
     <AppBar position="static" color="inherit">
       <Toolbar variant="dense">
-          <img src={OnlyGainsLogo} style={{height: 45}} />
+          {prefersDarkMode ? (<img src={LogoDark} style={{height: 45}} />) : (<img src={LogoLight} style={{height: 45}} />)}
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
           </Typography>
           <Button color="inherit" href="/sign-up">Sign Up</Button>

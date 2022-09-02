@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux'
-import {getTrainingDays} from '../store/days'
 import {getExercises} from '../store/exercise'
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import CreateExercise from './CreateExcercise';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import _ from 'lodash';
+import Link from '@mui/material/Link';
 
 function FetchingUserExercises({day_id}){
   const dispatch = useDispatch();
@@ -32,7 +26,7 @@ return (
         {Object.values(filter).map((value, index) => {
           return (
             <TableRow key={value?.title} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell component="th" scope="row">{value?.title}</TableCell>
+              <TableCell component="th" scope="row"><Link underline="none" rel="noopener noreferrer" target="_blank" href={`http://images.google.com/images?um=1&hl=en&safe=active&nfpr=1&q=${value?.title}`}>{value?.title}</Link></TableCell>
               <TableCell align="right">{value?.reps}</TableCell>
             </TableRow>
           )
