@@ -18,6 +18,11 @@ import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const style = {
   position: 'absolute',
@@ -41,16 +46,16 @@ function FetchingUserWorkouts(){
   const workouts = useSelector(state => state.workout)
   const [value, setValue] = useState(0);
   const [open, setOpen] = React.useState(false);
+  const [openDelete, setOpenDelete] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleClickOpenDelete = () => setOpenDelete(true);
+  const handleCloseDelete = () => setOpenDelete(false);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const handleDelte = () =>{
-
-  }
 
 return (
 <>
@@ -73,7 +78,7 @@ return (
               <Box textAlign='center'>
                 <Button onClick={handleOpen} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
                   align='center'
-                >Open Notes
+                >See Notes
                 </Button>
               </Box>
             </Accordion>
@@ -132,8 +137,29 @@ return (
                   right: '10%'
                   }}
               >
-                <Chip onClick={handleDelte} size='small' label={`Delete '${value?.title}'`} variant='outlined' color='error'/>
-              </Box>
+                <Chip onClick={handleClickOpenDelete} size='small' label={`Delete '${value?.title}'`} variant='outlined' color='error'/>
+                <Dialog
+                  open={openDelete}
+                  onClose={handleCloseDelete}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                    {`Delete '${value?.title}'?`}
+                  </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        This will delete the entire plan and all the days and exercises associated with it.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleCloseDelete}>Cancel</Button>
+                      <Button onClick={handleClose} autoFocus>
+                        Delete
+                      </Button>
+                    </DialogActions>
+                </Dialog>
+                </Box>
           </TabPanel>
         )
         })}
