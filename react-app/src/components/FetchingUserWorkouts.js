@@ -17,8 +17,7 @@ import Modal from '@mui/material/Modal';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
-
+import Chip from '@mui/material/Chip';
 
 const style = {
   position: 'absolute',
@@ -49,6 +48,9 @@ function FetchingUserWorkouts(){
     setValue(newValue);
   };
 
+  const handleDelte = () =>{
+
+  }
 
 return (
 <>
@@ -71,7 +73,8 @@ return (
               <Box textAlign='center'>
                 <Button onClick={handleOpen} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
                   align='center'
-                >Open Notes</Button>
+                >Open Notes
+                </Button>
               </Box>
             </Accordion>
             <Modal
@@ -120,6 +123,17 @@ return (
                 </Box>
               </Slide>
             </Modal>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  textAlign: 'center',
+                  bottom: "70px",
+                  left: '10%',
+                  right: '10%'
+                  }}
+              >
+                <Chip onClick={handleDelte} size='small' label={`Delete '${value?.title}'`} variant='outlined' color='error'/>
+              </Box>
           </TabPanel>
         )
         })}

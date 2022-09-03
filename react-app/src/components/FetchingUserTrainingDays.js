@@ -36,7 +36,6 @@ return (workout_id == undefined) ? (
 <Box sx={{mx: 0}}>
     {Object.values(trainingDays).map((value, index) => {
       return (
-        <>
           <Accordion expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }} disableGutters>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -53,7 +52,6 @@ return (workout_id == undefined) ? (
             <CreateExercise day_id={value?.id}/>
           </AccordionDetails>
           </Accordion>
-        </>
       )
     })}
 </Box>
