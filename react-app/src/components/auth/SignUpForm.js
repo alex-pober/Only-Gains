@@ -19,7 +19,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
- 
+
   const dispatch = useDispatch();
   let title = "My Workout"
 
@@ -58,7 +58,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to={`/users/${user?.id}`}/>;
   }
 
   return (

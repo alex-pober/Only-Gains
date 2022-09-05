@@ -8,7 +8,7 @@ class Exercise(db.Model):
     title = db.Column(db.String(50), nullable=False)
     reps = db.Column(db.String(20), nullable=True)
 
-    # users = db.relationship("User", back_populates="workouts")
+    day = db.relationship('Day', back_populates='exercise')
 
     def to_dict(self):
 

@@ -8,8 +8,8 @@ class Day(db.Model):
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(20), nullable=True)
 
-    # users = db.relationship("User", back_populates="workouts")
-
+    workout = db.relationship('Workout', back_populates='day')
+    exercise = db.relationship('Exercise', back_populates='day', cascade='all, delete')
     def to_dict(self):
 
         return {
