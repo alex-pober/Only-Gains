@@ -22,6 +22,7 @@ function CreateWorkout() {
     const onCreateWorkout = async (e) => {
         e.preventDefault();
         await dispatch(createWorkout(user_id, title, notes))
+        setOpenModal(false)
     }
 
     const updateTitle = (e) => {
@@ -38,7 +39,7 @@ function CreateWorkout() {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: '75%',
-        height: '40%',
+        height: 'auto',
         bgcolor: 'background.paper',
         borderRadius: '25px',
         boxShadow: 24,
@@ -77,6 +78,8 @@ return (
                 helperText="Some notes you want to mention about this workout"
                 variant="filled"
                 type="text"
+                multiline
+                maxRows={8}
                 value={notes}
                 onChange={updateNotes}
                 />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -19,6 +20,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
+import _ from 'lodash';
 
 const Root = styled('div')(({ theme }) => ({
   height: '100%',
@@ -57,10 +59,11 @@ const drawerBleeding = 56;
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+  const workouts = useSelector(state => state.workout)
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  let hasWorkouts = (_.isEmpty(workouts))
   useEffect(() => {
     if (!userId) {
       return;
@@ -157,6 +160,12 @@ const toggleDrawer = (newOpen) => () => {
       </Box>
       {/* ------------ MODAL SECTION START ------------ */}
       <FetchingUserWorkouts />
+      {hasWorkouts
+        ? <Box display='flex' justifyContent='center' alignItems='center' height='50vh'>
+            <Typography display='flex' color='text.secondary'>Create workouts by tapping <MoreVertIcon/> icon</Typography>
+          </Box>
+        : <></>
+      }
       {/* ------------ MODAL SECTION END ------------ */}
 
 
