@@ -60,15 +60,13 @@ function FetchingUserWorkouts(){
 return (
 <>
   <TabContext value={value}>
-  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-    <Tabs sx={{minHeight: "0px"}} value={value} onChange={handleChange} variant="scrollable" unmountOnExit>
+    <Tabs centered warapped variant="scrollable" sx={{minHeight: "0px"}} value={value} onChange={handleChange} unmountOnExit>
       {Object.values(workouts).map((value, index) => {
         return (
           <Tab label={value?.title} value={index} />
         )
         })}
     </Tabs>
-  </Box>
     {Object.values(workouts).map((value, index) => {
         return (
           <TabPanel value={index} sx={{ p: 0, bgcolor: 'background.default'}}>
@@ -134,7 +132,8 @@ return (
                   textAlign: 'center',
                   bottom: "70px",
                   left: '10%',
-                  right: '10%'
+                  right: '10%',
+                  zIndex: '-1'
                   }}
               >
                 <Chip onClick={handleClickOpenDelete} size='small' label={`Delete '${value?.title}'`} variant='outlined' color='error'/>
