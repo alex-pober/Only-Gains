@@ -30,6 +30,13 @@ def new_workout():
         return workout.to_dict()
     return (form.errors)
 
-#PUT
-
 #DELETE
+@workout_routes.route('/<id>', methods=['DELETE'])
+@login_required
+def delete_workout(id):
+    workout = Workout.query.get(id)
+    db.session.delete(workout)
+    db.session.commit()
+    return "Workout Deleted"
+
+#PUT

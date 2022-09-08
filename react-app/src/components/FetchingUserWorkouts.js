@@ -23,6 +23,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { deleteOneWorkout } from '../store/workout';
 
 const style = {
   position: 'absolute',
@@ -47,15 +48,24 @@ function FetchingUserWorkouts(){
   const [value, setValue] = useState(0);
   const [open, setOpen] = React.useState(false);
   const [openDelete, setOpenDelete] = React.useState(false);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleClickOpenDelete = () => setOpenDelete(true);
   const handleCloseDelete = () => setOpenDelete(false);
 
+  useEffect(() => {
+    setValue(workouts[0]?.id)
+  }, [workouts[0]?.id])
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleDeleteWorkout = (id) => {
+    dispatch(deleteOneWorkout(id))
+    handleCloseDelete()
+
+  }
 
 return (
 <>
@@ -63,13 +73,13 @@ return (
     <Tabs centered warapped variant="scrollable" sx={{minHeight: "0px"}} value={value} onChange={handleChange} unmountOnExit>
       {Object.values(workouts).map((value, index) => {
         return (
-          <Tab label={value?.title} value={index} />
+          <Tab label={value?.title} value={value?.id} />
         )
         })}
     </Tabs>
     {Object.values(workouts).map((value, index) => {
         return (
-          <TabPanel value={index} sx={{ p: 0, bgcolor: 'background.default'}}>
+          <TabPanel value={value?.id} sx={{ p: 0, bgcolor: 'background.default'}} unmountOnExit>
             <FetchingUserTrainingDays workout_id={value?.id}/>
             <CreateDayModal workout_id={value?.id} />
             <Accordion>
@@ -153,12 +163,12 @@ return (
                     </DialogContent>
                     <DialogActions>
                       <Button onClick={handleCloseDelete}>Cancel</Button>
-                      <Button onClick={handleClose} autoFocus>
+                      <Button onClick={() => handleDeleteWorkout(value?.id)} autoFocus>
                         Delete
                       </Button>
                     </DialogActions>
                 </Dialog>
-                </Box>
+              </Box>
           </TabPanel>
         )
         })}
