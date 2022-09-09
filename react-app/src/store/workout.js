@@ -19,7 +19,7 @@ const deleteWorkout = (workout) => ({
     payload: workout
 })
 
-const initialState = { workout: null };
+const initialState = {workout: null};
 
 export const getUserWorkouts = (id) => async dispatch => {
     const response = await fetch(`/api/workouts/${id}`)
@@ -68,9 +68,13 @@ export default function reducer(state = initialState, action){
         case CREATE_WORKOUT:
             return {...state, [action.payload.id]: action.payload}
         case GET_USER_WORKOUTS:
-            return {...action.payload.workout}
+            let mapWorkouts = _.mapKeys(action.payload.workout, 'id')
+            // return {...action.payload.workout}
+            return {...mapWorkouts}
         case DELETE_WORKOUT:
+            let workoutId = action.payload
             return _.omit(state, action.payload)
+
 
 
         default:

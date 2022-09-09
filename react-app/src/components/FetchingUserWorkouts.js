@@ -54,8 +54,8 @@ function FetchingUserWorkouts(){
   const handleCloseDelete = () => setOpenDelete(false);
 
   useEffect(() => {
-    setValue(workouts[0]?.id)
-  }, [workouts[0]?.id])
+    setValue(Object.values(workouts)[0]?.id)
+  }, [Object.values(workouts)[0]?.id])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,23 +63,25 @@ function FetchingUserWorkouts(){
 
   const handleDeleteWorkout = (id) => {
     dispatch(deleteOneWorkout(id))
+    setValue(Object.values(workouts)[0]?.id)
     handleCloseDelete()
-
   }
 
 return (
 <>
   <TabContext value={value}>
-    <Tabs centered warapped variant="scrollable" sx={{minHeight: "0px"}} value={value} onChange={handleChange} unmountOnExit>
-      {Object.values(workouts).map((value, index) => {
-        return (
-          <Tab label={value?.title} value={value?.id} />
-        )
-        })}
-    </Tabs>
+    <Box display="flex" justifyContent="center" width="100%">
+      <Tabs value={value} onChange={handleChange} scrollButtons="auto" wrapped unmountOnExit>
+        {Object.values(workouts).map((value, index) => {
+          return (
+            <Tab label={value?.title} value={value?.id} />
+          )
+          })}
+      </Tabs>
+    </Box>
     {Object.values(workouts).map((value, index) => {
         return (
-          <TabPanel value={value?.id} sx={{ p: 0, bgcolor: 'background.default'}} unmountOnExit>
+          <TabPanel value={value?.id} sx={{p: 0, bgcolor: 'background.default'}} unmountOnExit>
             <FetchingUserTrainingDays workout_id={value?.id}/>
             <CreateDayModal workout_id={value?.id} />
             <Accordion>
