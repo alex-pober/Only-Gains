@@ -33,11 +33,10 @@ function CreateDayModal({workout_id}) {
 
 const updateTitle = (e) => {
     setTitle(e.target.value);
-    };
-
+};
 const updateDescription = (e) => {
     setDescription(e.target.value);
-    };
+};
 
  const style = {
     position: 'absolute',
@@ -45,7 +44,7 @@ const updateDescription = (e) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '75%',
-    height: '40%',
+    height: 'auto',
     bgcolor: 'background.paper',
     borderRadius: '25px',
     boxShadow: 24,

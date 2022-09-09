@@ -67,12 +67,12 @@ export default function reducer(state = initialState, action){
     switch (action.type){
         case CREATE_WORKOUT:
             return {...state, [action.payload.id]: action.payload}
+
         case GET_USER_WORKOUTS:
             let mapWorkouts = _.mapKeys(action.payload.workout, 'id')
-            // return {...action.payload.workout}
             return {...mapWorkouts}
+            
         case DELETE_WORKOUT:
-            let workoutId = action.payload
             return _.omit(state, action.payload)
 
 

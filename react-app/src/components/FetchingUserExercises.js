@@ -10,6 +10,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import CircularProgress from '@mui/material/CircularProgress';
+import EditIcon from '@mui/icons-material/Edit';
+import EditingExercise from './EditingExercise.js'
 
 function FetchingUserExercises({day_id}){
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ return (
             <TableRow key={value?.title} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row"><Link underline="none" rel="noopener noreferrer" target="_blank" href={`http://images.google.com/images?um=1&hl=en&safe=active&nfpr=1&q=${value?.title}`}>{value?.title}</Link></TableCell>
               <TableCell align="right">{value?.reps}</TableCell>
+              <TableCell align='right' padding='none'><EditingExercise exercise={value}/></TableCell>
             </TableRow>
           )
         })}

@@ -16,7 +16,6 @@ function FetchingUserTrainingDays({workout_id}){
   const dispatch = useDispatch();
   const trainingDays = useSelector(state => state.days)
   const [expanded, setExpanded] = React.useState(false);
-
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -29,7 +28,7 @@ function FetchingUserTrainingDays({workout_id}){
   }, [+workout_id])
 
 return (workout_id == undefined) ? (
-  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', mx: 'auto', my: 'auto', minHeight: '350px' }}>
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', mt: '20vh', minHeight: '100vh' }}>
     <CircularProgress/>
   </Box>
 ) : (
