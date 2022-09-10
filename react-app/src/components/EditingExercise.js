@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import {updateOneExercise} from '../store/exercise';
 
 function EditingExercise({exercise}){
   const [openModal, setOpenModal] = React.useState(false);
@@ -26,7 +27,14 @@ function EditingExercise({exercise}){
 
   const onEditExercise = async (e) => {
     e.preventDefault();
+    const data = {
+      id: +exercise.id,
+      title,
+      reps
+    }
 
+    dispatch(updateOneExercise(data))
+    setOpenModal(false)
   }
 
   const style = {

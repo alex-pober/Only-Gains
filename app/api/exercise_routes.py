@@ -5,13 +5,13 @@ from app.forms import ExerciseForm
 
 exercise_routes = Blueprint('exercises', __name__)
 
-#GET /api/exercise/day_id
+#GET /api/exercises/day_id
 @exercise_routes.route('<id>')
 def get_exercises(id):
     exercises = Exercise.query.filter(Exercise.day_id == id).all()
     return {'exercises': [exercise.to_dict() for exercise in exercises]}
 
-#POST /api/days/
+#POST /api/exercises/
 @exercise_routes.route('/', methods=["POST"])
 @login_required
 def new_exercise():
@@ -30,5 +30,16 @@ def new_exercise():
     return (form.errors)
 
 #PUT
-
+@exercise_routes.route('/<id>', methods=["PUT"])
+@login_required
+def update_exercise(id):
+    form = ExerciseForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        exercise = Exercise.query.get(id)
+        exercise.title=form.data['title']
+        exercise.reps=form.data['reps']
+        db.session.commit()
+        return exercise.to_dict()
+    return (form.errors)
 #DELETE

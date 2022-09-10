@@ -1,5 +1,8 @@
+import _ from 'lodash';
+
 const GET_USER_EXERCISES = 'session/GET_USER_EXERCISES'
 const CREATE_EXERCISE = 'session/CREATE_EXERCISE'
+const UPDATE_EXERCISE = 'session/UPDATE_EXERCISE'
 
 const setAllExercises = (exercises) => ({
   type: GET_USER_EXERCISES,
@@ -8,6 +11,11 @@ const setAllExercises = (exercises) => ({
 
 const setExercise = (exercise) => ({
   type: CREATE_EXERCISE,
+  payload: exercise
+})
+
+const updateExercise = (exercise) => ({
+  type: UPDATE_EXERCISE,
   payload: exercise
 })
 
@@ -44,12 +52,35 @@ export const createExercise = (day_id, title, reps) => async (dispatch) => {
   }
 }
 
+export const updateOneExercise = (exercise) => async (dispatch) => {
+  const response = await fetch(`/api/exercises/${exercise.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(exercise)
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateExercise(data))
+    return data
+}
+}
+
 export default function reducer(state = initialState, action){
   switch (action.type){
+
     case CREATE_EXERCISE:
       return {...state, [action.payload.id]: action.payload}
+
     case GET_USER_EXERCISES:
-      return {...state, ...action.payload.exercises}
+      let mapExercises = _.mapKeys(action.payload.exercises, 'id')
+      return {...mapExercises}
+      // return {...state, ...action.payload.exercises}
+
+    case UPDATE_EXERCISE:
+      return {...state, [action.payload.id]: action.payload}
+
     default:
       return state;
   }

@@ -17,6 +17,8 @@ function FetchingUserExercises({day_id}){
   const dispatch = useDispatch();
   const exercises = useSelector(state => state.exercises)
   let filter = _.filter(exercises, {'day_id': day_id})
+  let ordered = _.orderBy(filter, ['id'], ['asc'])
+  console.log(ordered)
 
   useEffect(() => {
     dispatch(getExercises(+day_id))
@@ -26,7 +28,7 @@ return (
   <TableContainer component={Paper}>
     <Table size="small" aria-label="a dense table">
       <TableBody>
-        {Object.values(filter).map((value, index) => {
+        {Object.values(ordered).map((value, index) => {
           return (
             <TableRow key={value?.title} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row"><Link underline="none" rel="noopener noreferrer" target="_blank" href={`http://images.google.com/images?um=1&hl=en&safe=active&nfpr=1&q=${value?.title}`}>{value?.title}</Link></TableCell>
