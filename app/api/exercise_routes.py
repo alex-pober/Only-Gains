@@ -42,4 +42,12 @@ def update_exercise(id):
         db.session.commit()
         return exercise.to_dict()
     return (form.errors)
+
 #DELETE
+@exercise_routes.route('/<id>', methods=["DELETE"])
+@login_required
+def delete_exercise(id):
+    exercise = Exercise.query.get(id)
+    db.session.delete(exercise)
+    db.session.commit()
+    return "Exercise deleted"

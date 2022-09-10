@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import {updateOneExercise} from '../store/exercise';
+import {deleteOneExercise} from '../store/exercise';
 
 function EditingExercise({exercise}){
   const [openModal, setOpenModal] = React.useState(false);
@@ -28,7 +29,7 @@ function EditingExercise({exercise}){
   const onEditExercise = async (e) => {
     e.preventDefault();
     const data = {
-      id: +exercise.id,
+      id: exercise.id,
       title,
       reps
     }
@@ -36,6 +37,11 @@ function EditingExercise({exercise}){
     dispatch(updateOneExercise(data))
     setOpenModal(false)
   }
+  const handleDeleteExercise = (id) => {
+    dispatch(deleteOneExercise(id))
+    setOpenModal(false)
+  }
+
 
   const style = {
     position: 'absolute',
@@ -70,7 +76,7 @@ function EditingExercise({exercise}){
                         justifyContent: 'center',
                         height: '100%'
                         }}>
-                <Typography variant="h5">
+                <Typography variant="h5" gutterBottom>
                 Edit Exercise
                 </Typography>
                 <TextField sx={{ my: 1}}
@@ -88,7 +94,7 @@ function EditingExercise({exercise}){
                 onChange={updateReps}
                 />
                 <Stack direction="row" justifyContent='center' spacing={5} sx={{ mt: 1}}>
-                  <Button variant="text" color="error" type='submit'>Delete</Button>
+                  <Button variant="text" color="error" type='submit' onClick={() => handleDeleteExercise(exercise?.id)}>Delete</Button>
                   <Button variant="contained" type='submit'>Update</Button>
                 </Stack>
             </Box>

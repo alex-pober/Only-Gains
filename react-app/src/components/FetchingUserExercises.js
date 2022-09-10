@@ -18,7 +18,6 @@ function FetchingUserExercises({day_id}){
   const exercises = useSelector(state => state.exercises)
   let filter = _.filter(exercises, {'day_id': day_id})
   let ordered = _.orderBy(filter, ['id'], ['asc'])
-  console.log(ordered)
 
   useEffect(() => {
     dispatch(getExercises(+day_id))
