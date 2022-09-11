@@ -26,15 +26,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { deleteOneWorkout } from '../store/workout';
 
 const style = {
-  position: 'absolute',
-  top: '50%',
+  position: "relative",
   width: '96%',
+  top: '40%',
   left: '2%',
   right: '2%',
-  height: '40%',
+  height: 'auto',
   bgcolor: 'background.paper',
   borderRadius: '25px',
-  boxShadow: 24,
+  boxShadow: 24
 };
 
 
@@ -92,7 +92,7 @@ return (
                 </Button>
               </Box>
             </Accordion>
-            <Modal
+            <Dialog
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
               open={open}
@@ -102,15 +102,24 @@ return (
               BackdropProps={{
                 timeout: 500,
               }}
+              PaperProps={{
+                style: {
+                  backgroundColor: 'Transparent',
+                  backgroundImage: 'none',
+                  margin: '0px'
+                },
+              }}
             >
               <Slide direction="up" in={open}>
+              <DialogContent>
                 <Box sx={style}>
                   <Box sx={{
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'flex-start',
                       alignItems: 'flex-end',
-                      width: '100%'
+                      width: '100%',
+                      height: 'auto'
                       }}>
                     <IconButton onClick={handleClose} right sx={{
                         position: 'absolute',
@@ -125,19 +134,20 @@ return (
                             flexDirection: 'column',
                             justifyContent: 'center',
                             height: 'auto',
-                            p: 3
+                            p: 2
                             }}
                   >
                     <Typography id="transition-modal-title" variant="h6" component="h2">
                       Notes
                     </Typography>
-                    <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                    <Typography id="transition-modal-description" sx={{ mt: 2 }} paragraph>
                       {value?.notes}
                     </Typography>
                   </Box>
                 </Box>
+              </DialogContent>
               </Slide>
-            </Modal>
+            </Dialog>
               <Box
                 sx={{
                   position: 'absolute',
