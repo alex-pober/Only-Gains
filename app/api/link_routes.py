@@ -38,7 +38,7 @@ def new_post():
     return (form.errors)
 
 #PUT /api/links/:id
-@link_routes.route('/<id>', methods=["PUT"])
+@link_routes.route('/<id>', methods=["PATCH"])
 @login_required
 def update_link(id):
     form = LinkForm()

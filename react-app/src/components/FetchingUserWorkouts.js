@@ -135,19 +135,18 @@ return (
                 style: {
                   backgroundColor: 'Transparent',
                   backgroundImage: 'none',
-                  margin: '0px'
+                  margin: '0px',
                 },
               }}
             >
               <Slide direction="up" in={open}>
-              <DialogContent>
+              <DialogContent sx={{width: '100%'}}>
                 <Box sx={style}>
                   <Box sx={{
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'flex-start',
                       alignItems: 'flex-end',
-                      width: '100%',
                       height: 'auto'
                       }}>
                     <IconButton onClick={handleClose} right sx={{
