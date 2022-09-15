@@ -92,7 +92,6 @@ export default function reducer(state = initialState, action){
     case GET_USER_EXERCISES:
       let mapExercises = _.mapKeys(action.payload.exercises, 'id')
       return {...mapExercises}
-      // return {...state, ...action.payload.exercises}
 
     case UPDATE_EXERCISE:
       return {...state, [action.payload.id]: action.payload}

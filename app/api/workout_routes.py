@@ -39,4 +39,15 @@ def delete_workout(id):
     db.session.commit()
     return "Workout Deleted"
 
-#PUT
+#PATCH
+@workout_routes.route('/<id>', methods=['PATCH'])
+@login_required
+def update_workout(id):
+    form = WorkoutForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        workout = Workout.query.get(id)
+        workout.notes=form.data['notes']
+        db.session.commit()
+        return workout.to_dict()
+    return (form.errors)

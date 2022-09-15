@@ -1,8 +1,9 @@
 import _ from 'lodash';
 
 const GET_USER_WORKOUTS = 'session/GET_USER_WORKOUTS'
-const CREATE_WORKOUT = 'session/CREATE_WORKOUT';
+const CREATE_WORKOUT = 'session/CREATE_WORKOUT'
 const DELETE_WORKOUT = 'session/DELETE_WORKOUT'
+const UPDATE_WORKOUT = 'session/UPDATE_WORKOUT'
 
 const setUserWorkouts = (workouts) => ({
     type: GET_USER_WORKOUTS,
@@ -18,6 +19,12 @@ const deleteWorkout = (workout) => ({
     type: DELETE_WORKOUT,
     payload: workout
 })
+
+const updateWorkout = (workout) => ({
+    type: UPDATE_WORKOUT,
+    payload: workout
+  })
+
 
 const initialState = {workout: null};
 
@@ -62,6 +69,20 @@ export const deleteOneWorkout = (id) => async dispatch => {
     }
 }
 
+export const updateOneWorkout = (workout) => async (dispatch) => {
+    const response = await fetch(`/api/workouts/${workout.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(workout)
+    })
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(updateWorkout(data))
+      return data
+    }
+  }
 
 export default function reducer(state = initialState, action){
     switch (action.type){
@@ -71,11 +92,12 @@ export default function reducer(state = initialState, action){
         case GET_USER_WORKOUTS:
             let mapWorkouts = _.mapKeys(action.payload.workout, 'id')
             return {...mapWorkouts}
-            
+
         case DELETE_WORKOUT:
             return _.omit(state, action.payload)
 
-
+        case UPDATE_WORKOUT:
+            return {...state, [action.payload.id]: action.payload}
 
         default:
             return state;

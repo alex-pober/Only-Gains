@@ -24,6 +24,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { deleteOneWorkout } from '../store/workout';
+import { updateOneWorkout } from '../store/workout';
+import EditIcon from '@mui/icons-material/Edit';
+import TextField from '@mui/material/TextField';
 
 const style = {
   position: "relative",
@@ -47,9 +50,28 @@ function FetchingUserWorkouts(){
   const workouts = useSelector(state => state.workout)
   const [value, setValue] = useState(0);
   const [open, setOpen] = React.useState(false);
+  const [editing, setEditing] = React.useState(false);
+  const [notes, setNotes] = React.useState()
   const [openDelete, setOpenDelete] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setEditing(false)
+  }
+  const handleEditing = (notes) => {
+    setEditing(true);
+    setNotes(notes)
+  }
+
+  const submitNotesEdit = async (e, id) => {
+    e.preventDefault();
+    const workout = {
+      id: id,
+      notes
+    }
+    console.log(workout)
+  }
   const handleClickOpenDelete = () => setOpenDelete(true);
   const handleCloseDelete = () => setOpenDelete(false);
 
@@ -60,6 +82,10 @@ function FetchingUserWorkouts(){
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const updateNotes = (e) => {
+    setNotes(e.target.value)
+  }
 
   const handleDeleteWorkout = (id) => {
     dispatch(deleteOneWorkout(id))
@@ -129,7 +155,7 @@ return (
                       <CloseIcon/>
                     </IconButton>
                   </Box>
-                  <Box  sx={{
+                  <Box component='form' onSubmit={(e) => submitNotesEdit(e, value?.id)} sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -138,11 +164,18 @@ return (
                             }}
                   >
                     <Typography id="transition-modal-title" variant="h6" component="h2">
-                      Notes
+                      Notes <IconButton sx={{padding: "3px"}} onClick={() => handleEditing(value?.notes)}> <EditIcon sx={{display: "block"}} fontSize='small'/> </IconButton>
                     </Typography>
-                    <Typography id="transition-modal-description" sx={{ mt: 2 }} paragraph>
-                      {value?.notes}
-                    </Typography>
+                    {editing
+                      ? <TextField type='text' sx={{width: "310px", my: 2}}size="large" multiline value={notes} onChange={updateNotes}></TextField>
+                      : <Typography id="transition-modal-description" sx={{ mt: 2 }} paragraph>
+                          {value?.notes}
+                        </Typography>
+                    }
+                    {editing
+                      ? <Button type='submit' variant="contained">Update</Button>
+                      : <></>
+                    }
                   </Box>
                 </Box>
               </DialogContent>
