@@ -47,6 +47,7 @@ def update_workout(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         workout = Workout.query.get(id)
+        workout.title = form.data['title']
         workout.notes=form.data['notes']
         db.session.commit()
         return workout.to_dict()

@@ -64,13 +64,16 @@ function FetchingUserWorkouts(){
     setNotes(notes)
   }
 
-  const submitNotesEdit = async (e, id) => {
+  const submitNotesEdit = async (e, id, title) => {
     e.preventDefault();
     const workout = {
       id: id,
+      title,
       notes
     }
-    console.log(workout)
+    dispatch(updateOneWorkout(workout))
+    setOpen(false)
+    setEditing(false)
   }
   const handleClickOpenDelete = () => setOpenDelete(true);
   const handleCloseDelete = () => setOpenDelete(false);
@@ -155,7 +158,7 @@ return (
                       <CloseIcon/>
                     </IconButton>
                   </Box>
-                  <Box component='form' onSubmit={(e) => submitNotesEdit(e, value?.id)} sx={{
+                  <Box component='form' onSubmit={(e) => submitNotesEdit(e, value?.id, value?.title)} sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
