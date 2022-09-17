@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import ToolBar from '@mui/material/Toolbar';
@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
+import {editProfile} from '../store/session'
 
 function AccountInfo(){
   const { userId }  = useParams();
@@ -18,7 +19,7 @@ function AccountInfo(){
   const [name, setName] = useState(userState.name);
   const [bio, setBio] = useState(userState.bio);
   const [btnDisabled, setBtnDisabled] = useState(true)
-  console.log(userState)
+  const dispatch = useDispatch();
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -37,26 +38,39 @@ function AccountInfo(){
     setBtnDisabled(!e.target.value.trim());
   }
 
-  useEffect(() => {
-    if (!userId) {
-      return;
+  // useEffect(() => {
+  //   if (!userId) {
+  //     return;
+  //   }
+  //   (async () => {
+  //     const response = await fetch(`/api/users/${userId}`);
+  //     const user = await response.json();
+  //     setUser(user);
+  //   })();
+  // }, [userId]);
+
+
+  const onEditProfile = async (e) => {
+    e.preventDefault();
+    const data = {
+      id: userState.id,
+      username,
+      email,
+      name,
+      bio
     }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
+    dispatch(editProfile(data))
+  }
 
   return (
   <>
     <AppBar color='primary' position="sticky">
       <ToolBar>
       <Typography sx={{ flexGrow: 1 }}>Edit Account Info</Typography>
-      <Button variant="contained" disabled={btnDisabled}>Save</Button>
+      <Button type='submit' variant="contained" disabled={btnDisabled} onClick={onEditProfile}>Save</Button>
       </ToolBar>
     </AppBar>
-    <Box component="form">
+    <Box>
       <Stack sx={{m:3}}>
         <TextField label="Display Name" variant="outlined" margin="normal" required
           type='text'

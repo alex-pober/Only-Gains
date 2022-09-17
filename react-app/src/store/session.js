@@ -98,14 +98,15 @@ export const signUp = (username, email, password, name) => async (dispatch) => {
   }
 }
 
-export const EditProfile = (info) => async (dispatch) => {
+export const editProfile = (info) => async (dispatch) => {
   const response = await fetch(`/api/auth/${info.id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(info)
-  })
+  });
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
