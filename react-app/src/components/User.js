@@ -20,6 +20,8 @@ import Backdrop from '@mui/material/Backdrop';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import _ from 'lodash';
 
 const Root = styled('div')(({ theme }) => ({
@@ -46,6 +48,8 @@ const style = {
   position: 'absolute',
   top: '50%',
   width: '96%',
+  maxWidth: '500px',
+  margin: 'auto',
   left: '2%',
   right: '2%',
   height: '40%',
@@ -144,6 +148,10 @@ const toggleDrawer = (newOpen) => () => {
                         Dashboard
                       </Typography>
                       <CreateWorkout />
+                      <Divider />
+                      <Button variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
+                      <Divider />
+                      <Button variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
                       <Divider />
                     </Box>
                   </Box>
