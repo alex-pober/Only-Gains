@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import ToolBar from '@mui/material/Toolbar';
@@ -8,34 +10,58 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 
 function AccountInfo(){
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState('');
+  const { userId }  = useParams();
+  const [user, setUser] = useState({});
+  const userState = useSelector(state => state.session.user)
+  const [username, setUsername] = useState(userState.username);
+  const [email, setEmail] = useState(userState.email);
+  const [name, setName] = useState(userState.name);
+  const [bio, setBio] = useState(userState.bio);
+  const [btnDisabled, setBtnDisabled] = useState(true)
+  console.log(userState)
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
+    setBtnDisabled(!e.target.value.trim());
   };
   const updateEmail = (e) => {
     setEmail(e.target.value);
+    setBtnDisabled(!e.target.value.trim());
   };
   const updateName = (e) => {
     setName(e.target.value);
+    setBtnDisabled(!e.target.value.trim());
   };
   const updateBio = (e) => {
     setBio(e.target.value)
+    setBtnDisabled(!e.target.value.trim());
   }
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/users/${userId}`);
+      const user = await response.json();
+      setUser(user);
+    })();
+  }, [userId]);
 
   return (
   <>
     <AppBar color='primary' position="sticky">
       <ToolBar>
       <Typography sx={{ flexGrow: 1 }}>Edit Account Info</Typography>
-      <Button variant="contained">Save</Button>
+      <Button variant="contained" disabled={btnDisabled}>Save</Button>
       </ToolBar>
     </AppBar>
     <Box component="form">
-      <Stack>
+      <Stack sx={{m:3}}>
+        <TextField label="Display Name" variant="outlined" margin="normal" required
+          type='text'
+          value={name}
+          onChange={updateName}/>
         <TextField label="Username" variant="outlined" margin="normal"
           type='text'
           value={username}
@@ -44,14 +70,12 @@ function AccountInfo(){
           type='text'
           value={email}
           onChange={updateEmail}/>
-        <TextField label="Display Name" variant="outlined" margin="normal" required
-          type='text'
-          value={name}
-          onChange={updateName}/>
         <TextField label="Bio" variant="outlined" margin="normal"
           type='text'
           value={bio}
-          onChange={updateBio}/>
+          onChange={updateBio}
+          multiline
+          />
       </Stack>
     </Box>
   </>

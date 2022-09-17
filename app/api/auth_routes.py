@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, login_required
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -76,6 +76,20 @@ def sign_up():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@auth_routes.route('/<id>', methods=['PATCH'])
+@login_required
+def user_update(id):
+    form = SignUpForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = User.query.get(id)
+        user.username = form.data['username']
+        user.email = form.data['email']
+        user.bio = form.data['bio']
+        user.name = form.data['name']
+        db.session.commit()
+        return user.to_dict()
+    return (form.errors)
 
 @auth_routes.route('/unauthorized')
 def unauthorized():
