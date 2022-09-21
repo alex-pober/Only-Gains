@@ -61,7 +61,6 @@ function AccountInfo(){
     }
     dispatch(editProfile(data))
   }
-
   return (
   <>
     <AppBar color='primary' position="sticky">

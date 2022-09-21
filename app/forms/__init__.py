@@ -4,4 +4,4 @@ from .day_form import DayForm
 from .exercise_form import ExerciseForm
 from .link_form import LinkForm
 from .workout_form import WorkoutForm
-from .editiser_form import EditAccountForm
+from .edituser_form import EditAccountForm
