@@ -98,7 +98,7 @@ const toggleDrawer = (newOpen) => () => {
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h5">
-              {user.username}
+              {user.name}
             </Typography>
           </Grid>
           <Grid item>
