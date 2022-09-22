@@ -68,7 +68,7 @@ function User() {
   const [openModal, setOpenModal] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   let hasWorkouts = (_.isEmpty(workouts))
-  console.log(user)
+
   useEffect(() => {
     if (!userId) {
       return;
@@ -152,7 +152,7 @@ const toggleDrawer = (newOpen) => () => {
                       <Divider />
                       <Button href={`/users/${user.id}/account-info`} variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
                       <Divider />
-                      <Button variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
+                      <Button href={`/users/${user.id}/edit-links`} variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
                       <Divider />
                     </Box>
                   </Box>

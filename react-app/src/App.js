@@ -13,6 +13,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import AccountInfo from './components/AccountInfo';
+import EditLinks from './components/EditLinks';
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -60,6 +62,9 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute path='/users/:userId/account-info' exact={true} >
               <AccountInfo/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId/edit-links' exact={true} >
+              <EditLinks/>
             </ProtectedRoute>
             <ProtectedRoute path='/' exact={true} >
               {/* <h1>My Home Page</h1> */}
