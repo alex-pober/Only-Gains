@@ -32,7 +32,7 @@ function EditLinks(){
       <IconButton href={`/users/${userState?.id}`}>
         <ArrowBackIosIcon />
       </IconButton>
-      <Typography sx={{ flexGrow: 1 }}>Edit Account Info</Typography>
+      <Typography sx={{ flexGrow: 1 }}>Links Manger</Typography>
       <Button type='submit' variant="contained" disabled={btnDisabled} onClick={onEditLink}>Save</Button>
       </ToolBar>
     </AppBar>

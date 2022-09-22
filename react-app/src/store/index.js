@@ -4,12 +4,14 @@ import session from './session';
 import workout from './workout';
 import days from './days'
 import exercises from './exercise'
+import links from './links'
 
 const rootReducer = combineReducers({
   session,
   workout,
   days,
-  exercises
+  exercises,
+  links
 });
 
 
