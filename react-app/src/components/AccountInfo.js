@@ -68,7 +68,7 @@ function AccountInfo(){
   <>
     <AppBar color='primary' position="sticky">
       <ToolBar>
-      <IconButton href={`/users/${userState?.id}`}>
+      <IconButton href={`/user/${userState?.id}`}>
         <ArrowBackIosIcon />
       </IconButton>
       <Typography sx={{ flexGrow: 1 }}>Edit Account Info</Typography>

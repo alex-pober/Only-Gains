@@ -39,7 +39,24 @@ export const getUserLinks = (userId) => async dispatch => {
   }
 }
 
-
+export const createLink = (userId, title, link) => async (dispatch) => {
+  const response = await fetch(`/api/links/` , {
+    method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          userId,
+          title,
+          link
+      })
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setLink(data))
+    return data
+}
+}
 
 export default function reducer(state = initialState, action){
   switch (action.type){

@@ -150,9 +150,9 @@ const toggleDrawer = (newOpen) => () => {
                       </Typography>
                       <CreateWorkout />
                       <Divider />
-                      <Button href={`/users/${user.id}/account-info`} variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
+                      <Button href={`/user/${user.id}/account-info`} variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
                       <Divider />
-                      <Button href={`/users/${user.id}/edit-links`} variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
+                      <Button href={`/user/${user.id}/edit-links`} variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
                       <Divider />
                     </Box>
                   </Box>
