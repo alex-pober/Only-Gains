@@ -58,21 +58,32 @@ export const createLink = (userId, title, link) => async (dispatch) => {
   }
 }
 
-export const updateOneLink = (title, link) => async (dispatch) => {
-  const response = await fetch(`/api/links/` , {
+export const updateOneLink = (id, title, link) => async (dispatch) => {
+  const response = await fetch(`/api/links/${id}` , {
     method: 'PATCH',
       headers: {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+          id,
           title,
           link
       })
   })
   if (response.ok) {
     const data = await response.json();
-    dispatch(setLink(data))
+    dispatch(updateLink(data))
     return data
+  }
+}
+
+export const deleteOneLink = id => async dispatch => {
+  const res = await fetch(`/api/exercises/${id}`, {
+      method: 'DELETE',
+  })
+  if (res.ok) {
+      dispatch(deleteLink(id))
+      return 'Successfully deleted.'
   }
 }
 
