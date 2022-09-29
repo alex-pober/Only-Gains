@@ -55,7 +55,25 @@ export const createLink = (userId, title, link) => async (dispatch) => {
     const data = await response.json();
     dispatch(setLink(data))
     return data
+  }
 }
+
+export const updateOneLink = (title, link) => async (dispatch) => {
+  const response = await fetch(`/api/links/` , {
+    method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          title,
+          link
+      })
+  })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setLink(data))
+    return data
+  }
 }
 
 export default function reducer(state = initialState, action){
