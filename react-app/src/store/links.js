@@ -91,7 +91,7 @@ export default function reducer(state = initialState, action){
   switch (action.type){
 
     case GET_USER_LINKS:
-      let mapLinks = _.mapKeys(action.payload.exercises, 'id')
+      let mapLinks = _.mapKeys(action.payload.links, 'id')
       return {...mapLinks}
 
     case CREATE_LINK:

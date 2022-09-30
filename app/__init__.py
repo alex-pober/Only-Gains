@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.workout_routes import workout_routes
 from .api.day_routes import day_routes
 from .api.exercise_routes import exercise_routes
+from .api.link_routes import link_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(workout_routes, url_prefix='/api/workouts')
 app.register_blueprint(day_routes, url_prefix='/api/days')
 app.register_blueprint(exercise_routes, url_prefix='/api/exercises')
+app.register_blueprint(link_routes, url_prefix='/api/links')
 db.init_app(app)
 Migrate(app, db)
 

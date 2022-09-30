@@ -11,12 +11,18 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import FormHelperText from '@mui/material/FormHelperText';
 import {editProfile} from '../store/session'
+import { getUserLinks } from '../store/links';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function EditLinks(){
   const userState = useSelector(state => state.session.user)
+  const links = useSelector(state => state.links)
   const [btnDisabled, setBtnDisabled] = useState(true)
   const dispatch = useDispatch();
+  console.log(Object.keys(links).length === 0)
+  useEffect(() => {
+    dispatch(getUserLinks(userState.id))
+  }, [])
 
   const onEditLink = async (e) => {
     e.preventDefault();
@@ -28,14 +34,18 @@ function EditLinks(){
   return (
   <>
    <AppBar color='primary' position="sticky">
-      <ToolBar>
+    <ToolBar>
       <IconButton href={`/users/${userState?.id}`}>
         <ArrowBackIosIcon />
-      </IconButton>
+     </IconButton>
       <Typography sx={{ flexGrow: 1 }}>Links Manger</Typography>
-      <Button type='submit' variant="contained" disabled={btnDisabled} onClick={onEditLink}>Save</Button>
-      </ToolBar>
-    </AppBar>
+        <Button type='submit' variant="contained" disabled={btnDisabled} onClick={onEditLink}>Save</Button>
+    </ToolBar>
+  </AppBar>
+  {Object.keys(links).length === 0
+  ? <>obejct is empty</>
+  : <>objec is full</>
+  }
   </>
 
   )
