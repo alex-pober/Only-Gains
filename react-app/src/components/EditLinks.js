@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ToolBar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
@@ -13,6 +14,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import {editProfile} from '../store/session'
 import { getUserLinks } from '../store/links';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import CreateLink from './CreateLink';
 
 function EditLinks(){
   const userState = useSelector(state => state.session.user)
@@ -46,8 +48,8 @@ function EditLinks(){
   ? <>obejct is empty</>
   : <>objec is full</>
   }
+  <CreateLink/>
   </>
-
   )
 }
 
