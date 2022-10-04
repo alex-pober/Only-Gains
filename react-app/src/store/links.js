@@ -39,14 +39,14 @@ export const getUserLinks = (userId) => async dispatch => {
   }
 }
 
-export const createLink = (userId, title, link) => async (dispatch) => {
+export const createLink = (user_id, title, link) => async (dispatch) => {
   const response = await fetch(`/api/links/` , {
     method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          userId,
+          user_id,
           title,
           link
       })

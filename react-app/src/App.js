@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import AccountInfo from './components/AccountInfo';
-import EditLinks from './components/EditLinks';
+import EditLinks from './components/LinkManager';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

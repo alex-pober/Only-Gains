@@ -9,7 +9,6 @@ link_routes = Blueprint('links', __name__)
 @link_routes.route('/<id>')
 def get_link(id):
     links = Link.query.filter(Link.user_id == id).all()
-    print(links, "HERERERE<<<<<<<<<<<<<<<<<<<<")
     allLinks = [link.to_dict() for link in links]
     return {'links': allLinks}
 

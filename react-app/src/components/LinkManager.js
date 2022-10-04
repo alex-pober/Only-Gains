@@ -16,7 +16,7 @@ import { getUserLinks } from '../store/links';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CreateLink from './CreateLink';
 
-function EditLinks(){
+function LinkManager(){
   const userState = useSelector(state => state.session.user)
   const links = useSelector(state => state.links)
   const [btnDisabled, setBtnDisabled] = useState(true)
@@ -37,20 +37,38 @@ function EditLinks(){
   <>
    <AppBar color='primary' position="sticky">
     <ToolBar>
-      <IconButton href={`/users/${userState?.id}`}>
+      <IconButton href={`/user/${userState?.id}`}>
         <ArrowBackIosIcon />
      </IconButton>
       <Typography sx={{ flexGrow: 1 }}>Links Manger</Typography>
         <Button type='submit' variant="contained" disabled={btnDisabled} onClick={onEditLink}>Save</Button>
     </ToolBar>
   </AppBar>
+
+
+  {/* IF links object is empty */}
   {Object.keys(links).length === 0
-  ? <>obejct is empty</>
-  : <>objec is full</>
+
+
+  // TRUE render this <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ? <Typography
+      variant="subtitle1"
+      align="center"
+      sx={{
+        padding: "10%",
+        color: "text.secondary"
+      }}
+    >
+      Create your first link by filling out the form below and clicking "Add New Link" button
+    </Typography>
+
+
+  // FALSE render this <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  : <></>
   }
   <CreateLink/>
   </>
   )
 }
 
-export default EditLinks;
+export default LinkManager;
