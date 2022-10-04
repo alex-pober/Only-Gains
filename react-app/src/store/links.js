@@ -78,7 +78,7 @@ export const updateOneLink = (id, title, link) => async (dispatch) => {
 }
 
 export const deleteOneLink = id => async dispatch => {
-  const res = await fetch(`/api/exercises/${id}`, {
+  const res = await fetch(`/api/links/${id}`, {
       method: 'DELETE',
   })
   if (res.ok) {

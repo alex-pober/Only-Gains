@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+// import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -14,8 +14,8 @@ import {editProfile} from '../store/session'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function AccountInfo(){
-  const { userId }  = useParams();
-  const [user, setUser] = useState({});
+  // const { userId }  = useParams();
+  // const [user, setUser] = useState({});
   const userState = useSelector(state => state.session.user)
   const [username, setUsername] = useState(userState.username);
   const [email, setEmail] = useState(userState.email);

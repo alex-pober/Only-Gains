@@ -12,6 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import InputAdornment from '@mui/material/InputAdornment';
 
+
 function CreateLink(){
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
@@ -21,7 +22,7 @@ function CreateLink(){
 
   const onCreateLink = async (e) => {
     e.preventDefault();
-    await dispatch(createLink(user_id, title, url))
+    dispatch(createLink(user_id, title, url))
     setTitle('')
     setUrl('')
   }
@@ -35,31 +36,31 @@ const updateUrl = (e) => {
   };
 
   return (
-      <Paper elevation={4} sx={{maxWidth: '55%', padding: '10px', display:"flex", flexDirection: "column", alignItems: "center", margin: 'auto', borderRadius: '10px'}}>
-      <Typography variant="h6">Create New Link</Typography>
-          <TextField
-            type="text"
-            value={title}
-            onChange={updateTitle}
-            label="Title"
-            size="small"
-            required
-            InputProps={{
-              endAdornment: <InputAdornment position="end"><EditIcon fontSize='small'/></InputAdornment>,
-            }}
-          />
-          <TextField
-            type="text"
-            value={url}
-            onChange={updateUrl}
-            label="Url"
-            size="small"
-            required
-            InputProps={{
-              endAdornment: <InputAdornment position="end"><EditIcon fontSize='small'/></InputAdornment>,
-            }}
-          />
-          <Button onClick={onCreateLink} sx={{my: 1}} rginTop variant="contained" endIcon={<AddIcon/>}>Add New Link</Button>
+      <Paper component="form" onSubmit={onCreateLink} elevation={1} sx={{maxWidth: '55%', padding: '10px', display:"flex", flexDirection: "column", alignItems: "center", margin: 'auto', borderRadius: '10px'}}>
+        <Typography variant="h6">Create New Link</Typography>
+        <TextField
+          type="text"
+          value={title}
+          onChange={updateTitle}
+          label="Title"
+          size="small"
+          required
+          InputProps={{
+            endAdornment: <InputAdornment position="end"><EditIcon fontSize='small'/></InputAdornment>,
+          }}
+        />
+        <TextField
+          type="text"
+          value={url}
+          onChange={updateUrl}
+          label="Url"
+          size="small"
+          required
+          InputProps={{
+            endAdornment: <InputAdornment position="end"><EditIcon fontSize='small'/></InputAdornment>,
+          }}
+        />
+        <Button type='submit' sx={{my: 1}} rginTop variant="contained" endIcon={<AddIcon/>}>Add New Link</Button>
       </Paper>
   )
 }

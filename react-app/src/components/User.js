@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -22,6 +22,9 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import { getUserLinks } from '../store/links';
+import Stack from '@mui/material/Stack';
+import Avatar from '@mui/material/Avatar';
 import _ from 'lodash';
 
 const Root = styled('div')(({ theme }) => ({
@@ -63,7 +66,9 @@ const drawerBleeding = 56;
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+  const dispatch = useDispatch();
   const workouts = useSelector(state => state.workout)
+  const links = useSelector(state => state.links)
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -77,16 +82,16 @@ function User() {
       const response = await fetch(`/api/users/${userId}`);
       const user = await response.json();
       setUser(user);
+      dispatch(getUserLinks(user.id))
     })();
   }, [userId]);
+
 
   if (!user) {
     return null;
   }
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
-
-
 
 const toggleDrawer = (newOpen) => () => {
   setOpen(newOpen);
@@ -220,13 +225,31 @@ const toggleDrawer = (newOpen) => () => {
             overflow: 'auto',
           }}
         >
-          <Chip
-            label="Clickable Link"
-            component="a"
-            href="#basic-chip"
-            variant="outlined"
-            clickable
-          />
+          {Object.values(links).map((value) => {
+            const regex = /\/\/([^\/,\s]+\.[^\/,\s]+?)(?=\/|,|\s|$|\?|#)/g;
+            const mached = value?.link.match(regex)
+            return (
+              <Stack>
+                <Chip
+                  component="a"
+                  avatar={<Avatar src={`https://icon.horse/icon/${mached}`} />}
+                  label={value?.title}
+                  variant="outlined"
+                  clickable
+                  rel="noopener noreferrer"
+                  href={value?.link}
+                  target="_blank"
+                  sx={{
+                    m: "auto",
+                    my: 0.5,
+                    minWidth: "90%",
+                    maxWidth: "370px",
+                    height: "50px"
+                  }}
+                />
+              </Stack>
+            )
+          })}
         </StyledBox>
       </SwipeableDrawer>
     </Container>
