@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import AccountInfo from './components/AccountInfo';
-import EditLinks from './components/LinkManager';
+import LinkManager from './components/LinkManager';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -64,7 +64,7 @@ function App() {
               <AccountInfo/>
             </ProtectedRoute>
             <ProtectedRoute path='/user/:userId/edit-links' exact={true} >
-              <EditLinks/>
+              <LinkManager/>
             </ProtectedRoute>
             <ProtectedRoute path='/' exact={true} >
               {/* <h1>My Home Page</h1> */}

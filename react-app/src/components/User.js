@@ -25,6 +25,8 @@ import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import { getUserLinks } from '../store/links';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
+import QRCode from "react-qr-code";
+import LaunchIcon from '@mui/icons-material/Launch';
 import _ from 'lodash';
 
 const Root = styled('div')(({ theme }) => ({
@@ -49,13 +51,13 @@ const Puller = styled(Box)(({ theme }) => ({
 
 const style = {
   position: 'absolute',
-  top: '50%',
+  bottom: '5px',
   width: '96%',
   maxWidth: '500px',
   margin: 'auto',
   left: '2%',
   right: '2%',
-  height: '40%',
+  height: 'auto',
   bgcolor: 'background.paper',
   borderRadius: '25px',
   boxShadow: 24,
@@ -153,6 +155,26 @@ const toggleDrawer = (newOpen) => () => {
                       <Typography id="transition-modal-title" variant="h6" component="h2">
                         Dashboard
                       </Typography>
+                      <Box
+                        sx={{
+                          backgroundColor: 'divider',
+                          paddingInline: '25px',
+                          paddingBlock: '5px',
+                          borderRadius: '10px',
+                          width: "fit-content",
+                          margin: 'auto',
+                          marginBottom: '10px'
+                        }}
+                      >
+                        <Typography variant="subtitle2" align='center'>Your public link</Typography>
+                        <Typography variant="subtitle2" align='center'>www.onlygains.com<LaunchIcon sx={{marginBlock: '-8px', fontSize: '23px', marginLeft: '5px'}}/></Typography>
+                      </Box>
+                      <QRCode
+                        size={150}
+                        value="https://www.onlygains.com"
+                        style = {{marginInline: 'auto', marginBottom: '10px' }}
+                      />
+                      <Divider />
                       <CreateWorkout />
                       <Divider />
                       <Button href={`/user/${user.id}/account-info`} variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
