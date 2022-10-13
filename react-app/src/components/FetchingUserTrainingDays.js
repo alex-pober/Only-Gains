@@ -22,12 +22,12 @@ function FetchingUserTrainingDays({workout_id}){
 
   useEffect(() => {
     if (workout_id === undefined){
-      return;
+      return null;
     }
     dispatch(getTrainingDays(+workout_id))
-  }, [+workout_id])
+  },[])
 
-return (workout_id == undefined) ? (
+return (workout_id === undefined) ? (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', mt: '20vh', minHeight: '100vh' }}>
     <CircularProgress/>
   </Box>

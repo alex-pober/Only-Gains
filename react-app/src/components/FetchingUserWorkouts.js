@@ -46,7 +46,7 @@ function FetchingUserWorkouts(){
   const user = useSelector(state => state.session?.user);
   useEffect(() => {
     dispatch(getUserWorkouts(user?.id))
-  }, [dispatch])
+  }, [])
   const workouts = useSelector(state => state.workout)
   const [value, setValue] = useState(0);
   const [open, setOpen] = React.useState(false);

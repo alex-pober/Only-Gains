@@ -9,8 +9,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
-import CircularProgress from '@mui/material/CircularProgress';
-import EditIcon from '@mui/icons-material/Edit';
 import EditingExercise from './EditingExercise.js'
 
 function FetchingUserExercises({day_id}){
@@ -21,7 +19,7 @@ function FetchingUserExercises({day_id}){
 
   useEffect(() => {
     dispatch(getExercises(+day_id))
-  }, [+day_id])
+  }, [])
 
 return (
   <TableContainer component={Paper}>
