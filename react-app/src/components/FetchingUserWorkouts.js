@@ -54,6 +54,7 @@ function FetchingUserWorkouts(){
   const [notes, setNotes] = React.useState()
   const [openDelete, setOpenDelete] = React.useState(false);
 
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);

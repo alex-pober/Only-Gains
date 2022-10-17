@@ -91,6 +91,12 @@ def user_update(id):
         return user.to_dict()
     return (form.errors)
 
+@auth_routes.route('/<username>', methods=['GET'])
+def get_user_id(username):
+    user_id = User.query.filter(User.username == username).all()
+    # return {'user': [user.to_dict() for user in user_id]}
+    return user_id[0].to_dict()
+
 @auth_routes.route('/unauthorized')
 def unauthorized():
     """

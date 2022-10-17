@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
+import NavBar from './NavBar';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Divider from '@mui/material/Divider';
@@ -101,6 +102,7 @@ const toggleDrawer = (newOpen) => () => {
 
   return (
     <Container maxWidth="sm" disableGutters>
+      <NavBar />
       <Box sx={{ pt: 1, mb:0, px: 2, bgcolor: 'background.default' }}>
         <Grid container alignItems="center">
           <Grid item xs>
@@ -200,7 +202,7 @@ const toggleDrawer = (newOpen) => () => {
         ? <Box display='flex' justifyContent='center' alignItems='center' height='50vh'>
             <Typography display='flex' color='text.secondary'>Create workouts by tapping <MoreVertIcon/> icon</Typography>
           </Box>
-        : <></>
+        : null
       }
       {/* ------------ MODAL SECTION END ------------ */}
 

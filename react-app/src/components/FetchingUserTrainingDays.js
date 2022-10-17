@@ -15,6 +15,7 @@ import FetchingUserExercises from './FetchingUserExercises';
 function FetchingUserTrainingDays({workout_id}){
   const dispatch = useDispatch();
   const trainingDays = useSelector(state => state.days)
+  const user = useSelector(state => state.session.user )
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -48,7 +49,7 @@ return (workout_id === undefined) ? (
           </AccordionSummary>
           <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
             <FetchingUserExercises day_id={value?.id}/>
-            <CreateExercise day_id={value?.id}/>
+            {user && <CreateExercise day_id={value?.id}/>}
           </AccordionDetails>
           </Accordion>
       )

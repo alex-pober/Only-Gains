@@ -14,6 +14,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import AccountInfo from './components/AccountInfo';
 import LinkManager from './components/LinkManager';
+import PublicPage from './components/PublicPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,29 +47,33 @@ function App() {
       <CssBaseline />
       <BrowserRouter>
         <Container maxWidth="sm" disableGutters>
-          <NavBar />
           <Switch>
-            <Route path='/login' exact={true}>
-              <LoginForm />
-            </Route>
-            <Route path='/sign-up' exact={true}>
-              <SignUpForm />
-            </Route>
-            <ProtectedRoute path='/users' exact={true} >
-              <UsersList/>
-            </ProtectedRoute>
-            <ProtectedRoute path='/user/:userId' exact={true} >
-              <User />
-            </ProtectedRoute>
-            <ProtectedRoute path='/user/:userId/account-info' exact={true} >
-              <AccountInfo/>
-            </ProtectedRoute>
-            <ProtectedRoute path='/user/:userId/edit-links' exact={true} >
-              <LinkManager/>
-            </ProtectedRoute>
-            <ProtectedRoute path='/' exact={true} >
-              {/* <h1>My Home Page</h1> */}
-            </ProtectedRoute>
+              <Route path='/' exact={true} >
+                {/* <h1>My Home Page</h1> */}
+              </Route>
+              <Route path='/login' exact={true}>
+                <LoginForm />
+              </Route>
+              <Route path='/sign-up' exact={true}>
+                <SignUpForm />
+              </Route>
+
+              <ProtectedRoute path='/users' exact={true} >
+                <UsersList/>
+              </ProtectedRoute>
+              <ProtectedRoute path='/user/:userId' exact={true} >
+                <User />
+              </ProtectedRoute>
+              <ProtectedRoute path='/user/:userId/account-info' exact={true} >
+                <AccountInfo/>
+              </ProtectedRoute>
+              <ProtectedRoute path='/user/:userId/edit-links' exact={true} >
+                <LinkManager/>
+              </ProtectedRoute>
+
+              <Route path='/:userName' exact={true}>
+                <PublicPage />
+              </Route>
           </Switch>
         </Container>
       </BrowserRouter>
