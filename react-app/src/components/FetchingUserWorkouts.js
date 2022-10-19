@@ -49,10 +49,10 @@ function FetchingUserWorkouts(){
   }, [])
   const workouts = useSelector(state => state.workout)
   const [value, setValue] = useState(0);
-  const [open, setOpen] = React.useState(false);
-  const [editing, setEditing] = React.useState(false);
-  const [notes, setNotes] = React.useState()
-  const [openDelete, setOpenDelete] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [notes, setNotes] = useState()
+  const [openDelete, setOpenDelete] = useState(false);
 
 
   const handleOpen = () => setOpen(true);

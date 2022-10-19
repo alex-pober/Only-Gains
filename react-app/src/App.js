@@ -15,6 +15,7 @@ import Container from '@mui/material/Container';
 import AccountInfo from './components/AccountInfo';
 import LinkManager from './components/LinkManager';
 import PublicPage from './components/PublicPage';
+import LandingPage from './components/LandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,7 +50,7 @@ function App() {
         <Container maxWidth="sm" disableGutters>
           <Switch>
               <Route path='/' exact={true} >
-                {/* <h1>My Home Page</h1> */}
+                <LandingPage />
               </Route>
               <Route path='/login' exact={true}>
                 <LoginForm />

@@ -14,8 +14,8 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   return (
-    <AppBar position="static" color="inherit">
-      <Toolbar variant="dense">
+    <AppBar position="static" color="inherit" sx={{margin: 1, width: "auto", borderRadius: "25px"}}>
+      <Toolbar variant="dregense" >
           {prefersDarkMode ? (<img src={LogoDark} style={{height: 45}} />) : (<img src={LogoLight} style={{height: 45}} />)}
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
           </Typography>
