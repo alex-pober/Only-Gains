@@ -87,11 +87,11 @@ export default function PublicPage() {
     })();
   }, [userName]);
 
-  useEffect(() => {
-    (async () => {
-      workouts?.map(({id}) => {return console.log(id)})
-    })();
-  }, [workouts])
+  // useEffect(() => {
+  //   (async () => {
+  //     workouts?.map(({id}) => {return console.log(id)})
+  //   })();
+  // }, [workouts])
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -106,15 +106,15 @@ export default function PublicPage() {
 
   :
   <Container maxWidth="sm" disableGutters>
-    <Box sx={{ pt: 1, mb:0, px: 2, bgcolor: 'background.default' }}>
+    <Box sx={{ pt: 1, mb:0, mt:1, px: 4, bgcolor: 'background.default' }}>
       <Grid item xs>
         <Typography gutterBottom variant="h5">
           {user.name}
         </Typography>
+        <Typography color="text.secondary" variant="body2">
+          {user.bio}
+        </Typography>
       </Grid>
-      <Typography color="text.secondary" variant="body2">
-        {user.bio}
-      </Typography>
       <Divider variant="middle" sx={{ my: 0 }}><Button onClick={toggleDrawer(true)}>My Links</Button></Divider>
     </Box>
 

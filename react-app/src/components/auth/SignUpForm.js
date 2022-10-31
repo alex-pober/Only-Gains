@@ -12,20 +12,15 @@ import Stack from '@mui/material/Stack';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [open, setOpen] = React.useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
-
   const dispatch = useDispatch();
-  let title = "My Workout"
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
