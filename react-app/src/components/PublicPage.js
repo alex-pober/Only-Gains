@@ -106,12 +106,12 @@ export default function PublicPage() {
 
   :
   <Container maxWidth="sm" disableGutters>
-    <Box sx={{ pt: 1, mb:0, mt:1, px: 4, bgcolor: 'background.default' }}>
+    <Box sx={{ pt: 1, mt:1, px: 4, bgcolor: 'background.default' }}>
       <Grid item xs>
         <Typography gutterBottom variant="h5">
           {user.name}
         </Typography>
-        <Typography color="text.secondary" variant="body2">
+        <Typography color="text.secondary" variant="body2" sx={{mb:"11px", mr: 8}}>
           {user.bio}
         </Typography>
       </Grid>
@@ -126,7 +126,7 @@ export default function PublicPage() {
       </Box>
 
       {workouts?.map(({title, id, notes}) => {
-        return <TabPanel value={id} sx={{p: 0, bgcolor: 'background.default'}} unmountOnExit>
+        return <TabPanel value={id} sx={{p: 0, mb:"60px", bgcolor: 'background.default'}} unmountOnExit>
           <FetchingUserTrainingDays workout_id={id}/>
 {/* \/\/\/\/\/\/\/\/\/\/\/\/SEE NOTES POPUP BELOW \/\/\/\/\/\/\/\/\/\/\/\/ */}
             <Box textAlign='center'>

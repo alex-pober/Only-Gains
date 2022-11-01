@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import {getTrainingDays} from '../store/days'
 import {getExercises} from '../store/exercise'
+import { useParams } from 'react-router-dom'
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -13,6 +14,7 @@ import CreateExercise from './CreateExcercise';
 import FetchingUserExercises from './FetchingUserExercises';
 
 function FetchingUserTrainingDays({workout_id}){
+  let { userName } = useParams()
   const dispatch = useDispatch();
   const trainingDays = useSelector(state => state.days)
   const user = useSelector(state => state.session.user )
@@ -20,6 +22,7 @@ function FetchingUserTrainingDays({workout_id}){
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
 
   useEffect(() => {
     if (workout_id === undefined){
@@ -49,7 +52,7 @@ return (workout_id === undefined) ? (
           </AccordionSummary>
           <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
             <FetchingUserExercises day_id={value?.id}/>
-            {user && <CreateExercise day_id={value?.id}/>}
+            {user?.username === userName && <CreateExercise day_id={value?.id}/>}
           </AccordionDetails>
           </Accordion>
       )
