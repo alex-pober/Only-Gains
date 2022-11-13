@@ -63,8 +63,8 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
-            username=form.data['username'],
-            email=form.data['email'],
+            username=form.data['username'].lower(),
+            email=form.data['email'].lower(),
             password=form.data['password'],
             name=form.data['name'],
             bio=form.data['bio'],
@@ -83,8 +83,8 @@ def user_update(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User.query.get(id)
-        user.username = form.data['username']
-        user.email = form.data['email']
+        user.username = form.data['username'].lower()
+        user.email = form.data['email'].lower()
         user.bio = form.data['bio']
         user.name = form.data['name']
         db.session.commit()

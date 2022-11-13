@@ -186,15 +186,15 @@ export default function PublicPage() {
 
     </TabContext>
 
+
     <Global
       styles={{
         '.MuiDrawer-root > .MuiPaper-root': {
-          height: `calc(50% - ${drawerBleeding}px)`,
-          overflow: 'visible',
+          height: `calc(50% - 56px)`,
+          overflow: 'visible'
         },
       }}
     />
-
     <SwipeableDrawer
         anchor="bottom"
         open={open}

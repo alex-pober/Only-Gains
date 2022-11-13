@@ -16,7 +16,7 @@ const NavBar = () => {
   return (
     <AppBar position="static" color="inherit" sx={{margin: 1, width: "auto", borderRadius: "25px"}}>
       <Toolbar variant="dregense" >
-          {prefersDarkMode ? (<img src={LogoDark} style={{height: 45}} />) : (<img src={LogoLight} style={{height: 45}} />)}
+          {prefersDarkMode ? (<img src={LogoDark} style={{height: 45}} alt="Dark Logo"/>) : (<img src={LogoLight} style={{height: 45}} alt="Light Logo"/>)}
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
           </Typography>
           {(user)

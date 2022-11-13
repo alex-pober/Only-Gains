@@ -4,11 +4,16 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { createWorkout } from '../../store/workout';
 import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import LogoDark from '../../assets/LogoDark.png'
+import LogoLight from '../../assets/LogoLight.png'
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -17,6 +22,7 @@ const SignUpForm = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -74,41 +80,41 @@ const SignUpForm = () => {
     ))}
     <Box
       component="form"
-      sx={{
-        '& > :not(style)': { mx: "auto", width: '25ch' },
-        display: 'flex',
-        justifyContent: 'center',
-        top: '50%'
-      }}
       noValidate
       autoComplete="off"
       onSubmit={onSignUp}
     >
-      <Stack
-        spacing={2}
-      >
-        <TextField label="Username" variant="outlined" margin="normal"
-          type='text'
-          value={username}
-          onChange={updateUsername}/>
-        <TextField label="Email" variant="outlined" margin="normal"
-          type='text'
-          value={email}
-          onChange={updateEmail}/>
-        <TextField label="Password" variant="outlined" margin="normal"
-          type='password'
-          value={password}
-          onChange={updatePassword}/>
-        <TextField label="Repeat Password" variant="outlined" margin="normal" required
-          type='password'
-          value={repeatPassword}
-          onChange={updateRepeatPassword}/>
-        <TextField label="Display Name" variant="outlined" margin="normal" required
-          type='text'
-          value={name}
-          onChange={updateName}/>
-        <Button variant="contained" type='submit'>Submit</Button>
-      </Stack>
+      <Paper elevation={3}
+      sx={{ mx: "auto", my: 7, p: 3, width: '90vw', maxWidth: "350px", borderRadius: "15px",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}>
+          {prefersDarkMode ? (<img src={LogoDark} alt="Dark Logo"/>) : (<img src={LogoLight} alt="Light Logo"/>)}
+          <Typography variant="h4" sx={{fontWeight: 800}} >Create Account</Typography>
+          <TextField label="Username" variant="outlined" margin="normal"
+            type='text'
+            value={username}
+            onChange={updateUsername}/>
+          <TextField label="Email" variant="outlined" margin="normal"
+            type='text'
+            value={email}
+            onChange={updateEmail}/>
+          <TextField label="Password" variant="outlined" margin="normal"
+            type='password'
+            value={password}
+            onChange={updatePassword}/>
+          <TextField label="Repeat Password" variant="outlined" margin="normal" required
+            type='password'
+            value={repeatPassword}
+            onChange={updateRepeatPassword}/>
+          <TextField label="Display Name" variant="outlined" margin="normal" required
+            type='text'
+            value={name}
+            onChange={updateName}/>
+          <Button variant="contained" type='submit' sx={{my: 1}}>Submit</Button>
+          <Link href="/login" sx={{m: "auto", my: 3}}>Already have account</Link>
+      </Paper>
     </Box>
     {/* <form onSubmit={onSignUp}>
       <div>
