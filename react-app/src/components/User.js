@@ -28,6 +28,7 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import QRCode from "react-qr-code";
 import LaunchIcon from '@mui/icons-material/Launch';
+import Link from '@mui/material/Link';
 import _ from 'lodash';
 
 const Root = styled('div')(({ theme }) => ({
@@ -76,7 +77,7 @@ function User() {
   const [openModal, setOpenModal] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   let hasWorkouts = (_.isEmpty(workouts))
-
+  console.log(user)
   useEffect(() => {
     if (!userId) {
       return;
@@ -111,12 +112,10 @@ const toggleDrawer = (newOpen) => () => {
             </Typography>
           </Grid>
           <Grid item>
-            <MoreVertIcon
-            onClick={handleOpen}
-            size="small"
-            sx={{ ml: 2 }}
-          >
-          </MoreVertIcon>
+            <IconButton onClick={handleOpen}  size="small"
+              sx={{ ml: 2 }}>
+              <MoreVertIcon/>
+            </IconButton>
             <div>
               <Modal
                 aria-labelledby="transition-modal-title"
@@ -169,7 +168,7 @@ const toggleDrawer = (newOpen) => () => {
                         }}
                       >
                         <Typography variant="subtitle2" align='center'>Your public link</Typography>
-                        <Typography variant="subtitle2" align='center'>www.onlygains.com<LaunchIcon sx={{marginBlock: '-8px', fontSize: '23px', marginLeft: '5px'}}/></Typography>
+                        <Link href={`/${user.username}`} target="_blank" rel="noopener" underline="hover" align='center'>onlygains.org/{user.username}<LaunchIcon sx={{marginBlock: '-8px', fontSize: '23px', marginLeft: '5px'}}/></Link>
                       </Box>
                       <QRCode
                         size={150}
