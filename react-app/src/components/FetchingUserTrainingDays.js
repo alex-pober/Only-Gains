@@ -51,7 +51,7 @@ return (workout_id === undefined) ? (
           </AccordionSummary>
           <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
             <FetchingUserExercises day_id={value?.id}/>
-            {+userId === user.id && <CreateExercise day_id={value?.id}/>}
+            {+userId === user?.id && <CreateExercise day_id={value?.id}/>}
           </AccordionDetails>
           </Accordion>
       )

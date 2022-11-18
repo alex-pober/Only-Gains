@@ -33,7 +33,7 @@ return (
             <TableRow key={value?.title} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell component="th" scope="row"><Link underline="none" rel="noopener noreferrer" target="_blank" href={`http://images.google.com/images?um=1&hl=en&safe=active&nfpr=1&q=${value?.title}`}>{value?.title}</Link></TableCell>
               <TableCell align="right">{value?.reps}</TableCell>
-              <TableCell align='right' padding='none'>{+userId === user.id && <EditingExercise exercise={value}/>}</TableCell>
+              <TableCell align='right' padding='none'>{+userId === user?.id && <EditingExercise exercise={value}/>}</TableCell>
             </TableRow>
           )
         })}
