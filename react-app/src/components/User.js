@@ -77,7 +77,7 @@ function User() {
   const [openModal, setOpenModal] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   let hasWorkouts = (_.isEmpty(workouts))
-  console.log(user)
+
   useEffect(() => {
     if (!userId) {
       return;
