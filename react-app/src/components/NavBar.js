@@ -22,8 +22,12 @@ const NavBar = () => {
           {(user)
           ? <LogoutButton />
           : <div>
-              <Button color="inherit" href="/sign-up">Sign Up</Button>
-              <Button color="inherit" href="/login">Login</Button>
+              <NavLink to="/sign-up" exact={true} style={{textDecoration:"none"}}>
+                <Button >Sign Up</Button>
+              </NavLink>
+              <NavLink to="/login" exact={true} style={{textDecoration:"none"}}>
+                <Button >Login</Button>
+              </NavLink>
             </div>
           }
 

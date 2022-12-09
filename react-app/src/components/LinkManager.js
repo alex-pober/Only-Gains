@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ToolBar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -15,9 +15,10 @@ function LinkManager(){
   const userState = useSelector(state => state.session.user)
   const links = useSelector(state => state.links)
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     dispatch(getUserLinks(userState.id))
-  }, [])
+  })
 
   const onDeleteLink = (id) => {
     dispatch(deleteOneLink(id))
@@ -27,7 +28,7 @@ function LinkManager(){
   <>
    <AppBar color='primary' position="sticky">
     <ToolBar>
-      <IconButton href={`/user/${userState?.id}`}>
+      <IconButton onClick={() => {history.push(`/user/${userState?.id}`)}}>
         <ArrowBackIosIcon />
      </IconButton>
       <Typography sx={{ flexGrow: 1 }}>Links Manger</Typography>

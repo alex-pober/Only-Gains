@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -44,41 +43,41 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <BrowserRouter>
-        <Container maxWidth="sm" disableGutters>
-          <Switch>
-              <Route path='/' exact={true} >
-                <LandingPage />
-              </Route>
-              <Route path='/login' exact={true}>
-                <LoginForm />
-              </Route>
-              <Route path='/sign-up' exact={true}>
-                <SignUpForm />
-              </Route>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+          <Container maxWidth="sm" disableGutters>
+            <Switch>
+                <Route path='/' exact={true} >
+                  <LandingPage />
+                </Route>
+                <Route path='/login' exact={true}>
+                  <LoginForm />
+                </Route>
+                <Route path='/sign-up' exact={true}>
+                  <SignUpForm />
+                </Route>
 
-              <ProtectedRoute path='/users' exact={true} >
-                <UsersList/>
-              </ProtectedRoute>
-              <ProtectedRoute path='/user/:userId' exact={true} >
-                <User />
-              </ProtectedRoute>
-              <ProtectedRoute path='/user/:userId/account-info' exact={true} >
-                <AccountInfo/>
-              </ProtectedRoute>
-              <ProtectedRoute path='/user/:userId/edit-links' exact={true} >
-                <LinkManager/>
-              </ProtectedRoute>
+                <ProtectedRoute path='/users' exact={true} >
+                  <UsersList/>
+                </ProtectedRoute>
+                <ProtectedRoute path='/user/:userId' exact={true} >
+                  <User />
+                </ProtectedRoute>
+                <ProtectedRoute path='/user/:userId/account-info' exact={true} >
+                  <AccountInfo/>
+                </ProtectedRoute>
+                <ProtectedRoute path='/user/:userId/edit-links' exact={true} >
+                  <LinkManager/>
+                </ProtectedRoute>
 
-              <Route path='/:userName' exact={true}>
-                <PublicPage />
-              </Route>
-          </Switch>
-        </Container>
-      </BrowserRouter>
-    </ThemeProvider>
+                <Route path='/:userName' exact={true}>
+                  <PublicPage />
+                </Route>
+            </Switch>
+          </Container>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

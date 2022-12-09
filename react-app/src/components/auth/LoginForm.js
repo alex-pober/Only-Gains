@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
+import Link from '@mui/material/Link';
 import { login } from '../../store/session';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import LogoDark from '../../assets/LogoDark.png'
 import LogoLight from '../../assets/LogoLight.png'
@@ -62,7 +62,9 @@ const LoginForm = () => {
         value={password}
         onChange={updatePassword}/>
       <Button variant="contained" type='submit' sx={{my: 1}}>Login</Button>
-      <Link href="/sign-up" sx={{m: "auto", my: 3}}>Don't have an account</Link>
+      <NavLink to="/sign-up" exact={true} style={{textDecoration:"none", margin:"auto", marginTop:"25px"}}>
+        <Link>Don't have an account</Link>
+      </NavLink>
     </Paper>
   </Box>
     // <form onSubmit={onLogin}>

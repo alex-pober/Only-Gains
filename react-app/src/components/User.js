@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import NavBar from './NavBar';
 import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -30,12 +30,6 @@ import QRCode from "react-qr-code";
 import LaunchIcon from '@mui/icons-material/Launch';
 import Link from '@mui/material/Link';
 import _ from 'lodash';
-
-const Root = styled('div')(({ theme }) => ({
-  height: '100%',
-  backgroundColor:
-  theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
-}));
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
@@ -75,7 +69,6 @@ function User() {
   const links = useSelector(state => state.links)
   const [open, setOpen] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
   let hasWorkouts = (_.isEmpty(workouts))
 
   useEffect(() => {
@@ -178,9 +171,13 @@ const toggleDrawer = (newOpen) => () => {
                       <Divider />
                       <CreateWorkout />
                       <Divider />
-                      <Button href={`/user/${user.id}/account-info`} variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
+                      <NavLink to={`/user/${user.id}/account-info`} style={{textDecoration:"none", margin:"auto"}}>
+                        <Button variant="text" startIcon={<ManageAccountsIcon/>}>Account Info</Button>
+                      </NavLink>
                       <Divider />
-                      <Button href={`/user/${user.id}/edit-links`} variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
+                      <NavLink to={`/user/${user.id}/edit-links`} style={{textDecoration:"none", margin:"auto"}}>
+                        <Button variant="text" startIcon={<InsertLinkIcon/>}>Edit Links</Button>
+                      </NavLink>
                       <Divider />
                     </Box>
                   </Box>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { createWorkout } from '../../store/workout';
 import Box from '@mui/material/Box';
@@ -113,7 +113,9 @@ const SignUpForm = () => {
             value={name}
             onChange={updateName}/>
           <Button variant="contained" type='submit' sx={{my: 1}}>Submit</Button>
-          <Link href="/login" sx={{m: "auto", my: 3}}>Already have account</Link>
+          <NavLink to="/login" exact={true} style={{textDecoration:"none", margin:"auto", marginTop:"25px"}}>
+            <Link>Already have account</Link>
+          </NavLink>
       </Paper>
     </Box>
     {/* <form onSubmit={onSignUp}>

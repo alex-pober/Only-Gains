@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import _ from 'lodash';
 import { useSelector, useDispatch } from 'react-redux'
 import {getExercises} from '../store/exercise'
@@ -22,7 +22,7 @@ function FetchingUserExercises({day_id}){
 
   useEffect(() => {
     dispatch(getExercises(+day_id))
-  }, [])
+  })
 
 return (
   <TableContainer component={Paper}>

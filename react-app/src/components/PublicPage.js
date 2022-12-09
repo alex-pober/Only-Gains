@@ -1,4 +1,3 @@
-import { linkClasses } from '@mui/material'
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import Box from '@mui/material/Box';
@@ -15,9 +14,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import CreateDayModal from './CreateDayModal';
 import FetchingUserTrainingDays from './FetchingUserTrainingDays';
-import Accordion from '@mui/material/Accordion';
 import Backdrop from '@mui/material/Backdrop';
 import Slide from '@mui/material/Slide';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
@@ -229,7 +226,7 @@ export default function PublicPage() {
           }}
         >
           {Object.values(links).map((value) => {
-            const regex = /\/\/([^\/,\s]+\.[^\/,\s]+?)(?=\/|,|\s|$|\?|#)/g;
+            const regex = /\/\/([^,\s]+\.[^,\s]+?)(?=\/|,|\s|$|\?|#)/g;
             const mached = value?.link.match(regex)
             return (
               <Stack>

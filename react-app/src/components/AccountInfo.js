@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -23,6 +23,7 @@ function AccountInfo(){
   const [bio, setBio] = useState(userState.bio);
   const [btnDisabled, setBtnDisabled] = useState(true)
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -68,7 +69,7 @@ function AccountInfo(){
   <>
     <AppBar color='primary' position="sticky">
       <ToolBar>
-      <IconButton href={`/user/${userState?.id}`}>
+      <IconButton onClick={() => {history.push(`/user/${userState?.id}`)}}>
         <ArrowBackIosIcon />
       </IconButton>
       <Typography sx={{ flexGrow: 1 }}>Edit Account Info</Typography>

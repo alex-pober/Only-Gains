@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
@@ -12,7 +12,7 @@ import {updateOneExercise} from '../store/exercise';
 import {deleteOneExercise} from '../store/exercise';
 
 function EditingExercise({exercise}){
-  const [openModal, setOpenModal] = React.useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [title, setTitle] = useState(exercise.title);
   const [reps, setReps] = useState(exercise.reps);
   const dispatch = useDispatch();
