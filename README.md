@@ -2,9 +2,9 @@
 A place where to share and discover gym routines.
 
 ## Deployed beta version:
-https://www.onlygains.org/
+https://onlygains.org/
 ### Example public profile page:
-https://www.onlygains.org/Admin
+https://onlygains.org/admin
 
 
 ## Early Database Schema
