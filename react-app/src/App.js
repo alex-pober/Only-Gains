@@ -70,7 +70,6 @@ function App() {
                 <ProtectedRoute path='/user/:userId/edit-links' exact={true} >
                   <LinkManager/>
                 </ProtectedRoute>
-
                 <Route path='/:userName' exact={true}>
                   <PublicPage />
                 </Route>

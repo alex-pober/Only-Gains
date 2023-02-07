@@ -101,7 +101,7 @@ return (
 <>
   <TabContext value={value}>
     <Box display="flex" justifyContent="center" width="100%">
-      <Tabs value={value} onChange={handleChange} scrollButtons="auto" wrapped unmountOnExit>
+      <Tabs value={value} onChange={handleChange} scrollButtons="auto" wrapped>
         {Object.values(workouts).map((value, index) => {
           return (
             <Tab label={value?.title} value={value?.id} />
@@ -111,7 +111,7 @@ return (
     </Box>
     {Object.values(workouts).map((value, index) => {
         return (
-          <TabPanel value={value?.id} sx={{p: 0, bgcolor: 'background.default'}} unmountOnExit>
+          <TabPanel value={value?.id} sx={{p: 0, bgcolor: 'background.default'}}>
             <FetchingUserTrainingDays workout_id={value?.id}/>
             <CreateDayModal workout_id={value?.id} />
             <Accordion>

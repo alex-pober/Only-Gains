@@ -190,7 +190,7 @@ const toggleDrawer = (newOpen) => () => {
           {user.bio}
         </Typography>
 
-        <Divider variant="middle" sx={{ my: 0 }}><Button onClick={toggleDrawer(true)}>My Links</Button></Divider>
+        <Divider variant="middle" sx={{ my: 0 }}><Button onClick={() => {toggleDrawer(true)}}>My Links</Button></Divider>
       </Box>
       {/* ------------ MODAL SECTION START ------------ */}
       <FetchingUserWorkouts />

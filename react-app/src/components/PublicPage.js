@@ -59,14 +59,13 @@ const drawerBleeding = 56;
 
 export default function PublicPage() {
   let { userName } = useParams()
-  const [loaded, setLoaded] = useState(true)
+  const [loaded, setLoaded] = useState(false)
   const [user, setUser] = useState({})
   const [links, setLinks] = useState([])
   const [workouts, setWorkouts] = useState()
   const [open, setOpen] = useState(false);
   const [openNotes, setOpenNotes] = useState(false)
-  const [value, setValue] = useState(0);
-
+  const [value, setValue] = useState("0");
 
   useEffect(() => {
     (async () => {
@@ -79,7 +78,6 @@ export default function PublicPage() {
       const responseWorkouts = await fetch(`/api/workouts/${user?.id}`)
       const workouts = await responseWorkouts.json();
       setWorkouts(workouts.workout)
-      setValue(workouts.workout[0]?.id)
       setLoaded(true)
     })();
   }, [userName]);
@@ -117,13 +115,15 @@ export default function PublicPage() {
 
     <TabContext value={value}>
       <Box display="flex" justifyContent="center" width="100%">
-        <Tabs value={value} onChange={(e, newValue) => {setValue(newValue)}} scrollButtons="auto" unmountOnExit>
-          {workouts?.map(({title, id, notes}) => {return <Tab label={title} value={id} />})}
+        <Tabs value={value} onChange={(e, newValue) => {setValue(newValue)}} scrollButtons="auto" >
+          {workouts?.map(({title, id}, index) => {
+            return <Tab key={id} label={title} value={index.toString()} />})}
         </Tabs>
       </Box>
 
-      {workouts?.map(({title, id, notes}) => {
-        return <TabPanel value={id} sx={{p: 0, mb:"60px", bgcolor: 'background.default'}} unmountOnExit>
+      {workouts?.map(({title, id, notes}, index) => {
+        return (
+        <TabPanel key={id} value={index.toString()} sx={{p: 0, mb:"60px", bgcolor: 'background.default'}} >
           <FetchingUserTrainingDays workout_id={id}/>
 {/* \/\/\/\/\/\/\/\/\/\/\/\/SEE NOTES POPUP BELOW \/\/\/\/\/\/\/\/\/\/\/\/ */}
             <Box textAlign='center'>
@@ -132,7 +132,6 @@ export default function PublicPage() {
               >See Notes
               </Button>
             </Box>
-
             <Dialog
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
@@ -177,7 +176,8 @@ export default function PublicPage() {
             </Slide>
             </Dialog>
         </TabPanel>
-        })}
+        )
+      })}
 
 
 
@@ -229,7 +229,7 @@ export default function PublicPage() {
             const regex = /\/\/([^,\s]+\.[^,\s]+?)(?=\/|,|\s|$|\?|#)/g;
             const mached = value?.link.match(regex)
             return (
-              <Stack>
+              <Stack key={value.id}>
                 <Chip
                   component="a"
                   avatar={<Avatar src={`https://icon.horse/icon/${mached}`} />}

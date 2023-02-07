@@ -37,21 +37,21 @@ return (workout_id === undefined) ? (
 <Box sx={{mx: 0}}>
     {Object.values(trainingDays).map((value, index) => {
       return (
-          <Accordion expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }} disableGutters>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-          >
-            <Typography sx={{ width: '33%', flexShrink: 0 }}>
-              {value?.title}
-            </Typography>
-            <Typography sx={{ color: 'text.secondary' }}>{value?.description}</Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
-            <FetchingUserExercises day_id={value?.id}/>
-            {+userId === user?.id && <CreateExercise day_id={value?.id}/>}
-          </AccordionDetails>
+          <Accordion key={index} expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }} disableGutters>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography sx={{ width: '33%', flexShrink: 0 }}>
+                {value?.title}
+              </Typography>
+              <Typography sx={{ color: 'text.secondary' }}>{value?.description}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
+              <FetchingUserExercises day_id={value?.id}/>
+              {+userId === user?.id && <CreateExercise day_id={value?.id}/>}
+            </AccordionDetails>
           </Accordion>
       )
     })}

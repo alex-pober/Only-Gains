@@ -45,6 +45,7 @@ export const createTrainingDay = (workout_id, title, description) => async (disp
 }
 
 export default function reducer(state = initialState, action){
+
   switch (action.type){
       case CREATE_TRAINING_DAY:
           return {...state, [action.payload.id]: action.payload}
