@@ -18,17 +18,18 @@ import LandingPage from './components/LandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const dispatch = useDispatch();
 
   const theme = React.useMemo(
     () =>
       createTheme({
         palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
+          // mode: prefersDarkMode ? 'dark' : 'light',
+          mode: 'dark'
         },
       }),
-    [prefersDarkMode],
+    [],
   );
 
   useEffect(() => {

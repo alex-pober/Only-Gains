@@ -29,34 +29,30 @@ function FetchingUserTrainingDays({workout_id}){
     dispatch(getTrainingDays(+workout_id))
   },[])
 
-return (workout_id === undefined) ? (
-  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', mt: '20vh', minHeight: '100vh' }}>
-    <CircularProgress/>
+return (
+  <Box sx={{mx: 0}}>
+      {Object.values(trainingDays).map((value, index) => {
+        return (
+            <Accordion key={index} expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }} disableGutters>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1bh-content"
+                id="panel1bh-header"
+              >
+                <Typography sx={{ width: '37%', flexShrink: 0 }}>
+                  {value?.title}
+                </Typography>
+                <Typography sx={{ color: 'text.secondary' }}>{value?.description}</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
+                <FetchingUserExercises day_id={value?.id}/>
+                {+userId === user?.id && <CreateExercise day_id={value?.id}/>}
+              </AccordionDetails>
+            </Accordion>
+        )
+      })}
   </Box>
-) : (
-<Box sx={{mx: 0}}>
-    {Object.values(trainingDays).map((value, index) => {
-      return (
-          <Accordion key={index} expanded={expanded === index} onChange={handleChange(index)} TransitionProps={{ unmountOnExit: true }} disableGutters>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1bh-content"
-              id="panel1bh-header"
-            >
-              <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                {value?.title}
-              </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>{value?.description}</Typography>
-            </AccordionSummary>
-            <AccordionDetails sx={{p:1, marginTop: "-18px"}}>
-              <FetchingUserExercises day_id={value?.id}/>
-              {+userId === user?.id && <CreateExercise day_id={value?.id}/>}
-            </AccordionDetails>
-          </Accordion>
-      )
-    })}
-</Box>
-)
+  )
 }
 
 export default FetchingUserTrainingDays;

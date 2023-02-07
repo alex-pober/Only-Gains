@@ -27,7 +27,6 @@ import { Global } from '@emotion/react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
-
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
 }));
@@ -124,57 +123,57 @@ export default function PublicPage() {
       {workouts?.map(({title, id, notes}, index) => {
         return (
         <TabPanel key={id} value={index.toString()} sx={{p: 0, mb:"60px", bgcolor: 'background.default'}} >
-          <FetchingUserTrainingDays workout_id={id}/>
-{/* \/\/\/\/\/\/\/\/\/\/\/\/SEE NOTES POPUP BELOW \/\/\/\/\/\/\/\/\/\/\/\/ */}
-            <Box textAlign='center'>
-              <Button onClick={() => setOpenNotes(true)} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
-                align='center'
-              >See Notes
-              </Button>
-            </Box>
-            <Dialog
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              open={openNotes}
-              onClose={() => setOpenNotes(false)}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-              PaperProps={{
-                style: {
-                  backgroundColor: 'Transparent',
-                  backgroundImage: 'none',
-                  margin: '0px',
-                },
-              }}
-            >
-            <Slide direction="up" in={openNotes}>
-              <DialogContent sx={{width: '100%', padding: "0px"}}>
-                <Box sx={style}>
-                  <Box sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      height: 'auto',
-                      minWidth: '300px'
-                      }}>
-                    <Typography id="transition-modal-title" variant="h6" component="h2">
-                      {title}
+            <FetchingUserTrainingDays workout_id={id}/>
+  {/* \/\/\/\/\/\/\/\/\/\/\/\/SEE NOTES POPUP BELOW \/\/\/\/\/\/\/\/\/\/\/\/ */}
+              <Box textAlign='center'>
+                <Button onClick={() => setOpenNotes(true)} startIcon={<KeyboardArrowUpIcon />} endIcon={<KeyboardArrowUpIcon />}
+                  align='center'
+                >See Notes
+                </Button>
+              </Box>
+              <Dialog
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={openNotes}
+                onClose={() => setOpenNotes(false)}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+                PaperProps={{
+                  style: {
+                    backgroundColor: 'Transparent',
+                    backgroundImage: 'none',
+                    margin: '0px',
+                  },
+                }}
+              >
+              <Slide direction="up" in={openNotes}>
+                <DialogContent sx={{width: '100%', padding: "0px"}}>
+                  <Box sx={style}>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        height: 'auto',
+                        minWidth: '300px'
+                        }}>
+                      <Typography id="transition-modal-title" variant="h6" component="h2">
+                        {title}
+                      </Typography>
+                      <IconButton onClick={() => setOpenNotes(false)} right='true'>
+                        <CloseIcon/>
+                      </IconButton>
+                    </Box>
+                    <Typography id="transition-modal-description" sx={{ mt: 2 }} paragraph>
+                      {notes}
                     </Typography>
-                    <IconButton onClick={() => setOpenNotes(false)} right='true'>
-                      <CloseIcon/>
-                    </IconButton>
                   </Box>
-                  <Typography id="transition-modal-description" sx={{ mt: 2 }} paragraph>
-                    {notes}
-                  </Typography>
-                </Box>
-              </DialogContent>
-            </Slide>
-            </Dialog>
+                </DialogContent>
+              </Slide>
+              </Dialog>
         </TabPanel>
         )
       })}
