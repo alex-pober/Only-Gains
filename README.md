@@ -1,8 +1,9 @@
 # OnlyGains
-A place where to share and discover gym routines.
+For fitness influencers to use isntread of other 'link in bio' and to promote free workout plans.
 
-## Deployed beta version:
+## Live with growing userbase:
 https://onlygains.org/
+
 ### Example public profile page:
 https://onlygains.org/admin
 
