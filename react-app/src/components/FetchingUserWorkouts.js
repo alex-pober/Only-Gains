@@ -13,7 +13,6 @@ import CreateDayModal from './CreateDayModal';
 import FetchingUserTrainingDays from './FetchingUserTrainingDays';
 import Accordion from '@mui/material/Accordion';
 import Backdrop from '@mui/material/Backdrop';
-import Modal from '@mui/material/Modal';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -46,6 +45,7 @@ function FetchingUserWorkouts(){
   const user = useSelector(state => state.session?.user);
   useEffect(() => {
     dispatch(getUserWorkouts(user?.id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const workouts = useSelector(state => state.workout)
   const [value, setValue] = useState(0);
@@ -81,6 +81,8 @@ function FetchingUserWorkouts(){
 
   useEffect(() => {
     setValue(Object.values(workouts)[0]?.id)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Object.values(workouts)[0]?.id])
 
   const handleChange = (event, newValue) => {

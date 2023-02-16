@@ -81,6 +81,8 @@ function User() {
       setUser(user);
       dispatch(getUserLinks(user.id))
     })();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
 
@@ -246,7 +248,7 @@ const toggleDrawer = (newOpen) => () => {
           }}
         >
           {Object.values(links).map((value) => {
-            const regex = /\/\/([^\/,\s]+\.[^\/,\s]+?)(?=\/|,|\s|$|\?|#)/g;
+            const regex = /\/\/([^,\s]+\.[^,\s]+?)(?=\/|,|\s|$|\?|#)/g;
             const mached = value?.link.match(regex)
             return (
               <Stack>

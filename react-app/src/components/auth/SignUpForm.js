@@ -32,6 +32,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, name));
+      console.log(data)
       if (data) {
         setErrors(data)
       }
@@ -70,12 +71,12 @@ const SignUpForm = () => {
         anchorOrigin = {{ vertical: 'top', horizontal: 'center' }}
         open={true}
         key={ind}
-        // message = {error}
-        autoHideDuration = {500}
+        message = {error}
+        autoHideDuration = {10}
       >
-        <Alert severity="error" sx={{ width: '100%' }}>
+        {/* <Alert severity="error" sx={{ width: '100%' }}>
          {error}
-        </Alert>
+        </Alert> */}
       </Snackbar>
     ))}
     <Box

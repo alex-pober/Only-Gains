@@ -8,7 +8,6 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import AccountInfo from './components/AccountInfo';
@@ -18,7 +17,6 @@ import LandingPage from './components/LandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const dispatch = useDispatch();
 
   const theme = React.useMemo(
