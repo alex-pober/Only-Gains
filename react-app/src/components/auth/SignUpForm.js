@@ -60,66 +60,58 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to={`/user/${user?.id}`}/>;
+    return <Redirect to={`/user/${user?.id}`} />;
   }
 
   return (
     <>
-    {errors.map((error, ind) => (
-      // <div key={ind}>{error}</div>
-      <Snackbar
-        anchorOrigin = {{ vertical: 'top', horizontal: 'center' }}
-        open={true}
-        key={ind}
-        message = {error}
-        autoHideDuration = {10}
+      {errors.map((error, ind) => (
+        <Alert severity="error" sx={{ width: '90%', m: 'auto' }}>
+          {error}
+        </Alert>
+      ))}
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        onSubmit={onSignUp}
       >
-        {/* <Alert severity="error" sx={{ width: '100%' }}>
-         {error}
-        </Alert> */}
-      </Snackbar>
-    ))}
-    <Box
-      component="form"
-      noValidate
-      autoComplete="off"
-      onSubmit={onSignUp}
-    >
-      <Paper elevation={3}
-      sx={{ mx: "auto", my: 7, p: 3, width: '90vw', maxWidth: "350px", borderRadius: "15px",
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}>
-          {prefersDarkMode ? (<img src={LogoDark} alt="Dark Logo"/>) : (<img src={LogoLight} alt="Light Logo"/>)}
-          <Typography variant="h4" sx={{fontWeight: 800}} >Create Account</Typography>
+        <Paper elevation={3}
+          sx={{
+            mx: "auto", my: 7, p: 3, width: '90vw', maxWidth: "350px", borderRadius: "15px",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
+          {prefersDarkMode ? (<img src={LogoDark} alt="Dark Logo" />) : (<img src={LogoLight} alt="Light Logo" />)}
+          <Typography variant="h4" sx={{ fontWeight: 800 }} >Create Account</Typography>
           <TextField label="Username" variant="outlined" margin="normal"
             type='text'
             value={username}
-            onChange={updateUsername}/>
+            onChange={updateUsername} />
           <TextField label="Email" variant="outlined" margin="normal"
             type='text'
             value={email}
-            onChange={updateEmail}/>
+            onChange={updateEmail} />
           <TextField label="Password" variant="outlined" margin="normal"
             type='password'
             value={password}
-            onChange={updatePassword}/>
+            onChange={updatePassword} />
           <TextField label="Repeat Password" variant="outlined" margin="normal" required
             type='password'
             value={repeatPassword}
-            onChange={updateRepeatPassword}/>
+            onChange={updateRepeatPassword} />
           <TextField label="Display Name" variant="outlined" margin="normal" required
             type='text'
             value={name}
-            onChange={updateName}/>
-          <Button variant="contained" type='submit' sx={{my: 1}}>Submit</Button>
-          <NavLink to="/login" exact={true} style={{textDecoration:"none", margin:"auto", marginTop:"25px"}}>
+            onChange={updateName} />
+          <Button variant="contained" type='submit' sx={{ my: 1 }}>Submit</Button>
+          <NavLink to="/login" exact={true} style={{ textDecoration: "none", margin: "auto", marginTop: "25px" }}>
             <Link>Already have account</Link>
           </NavLink>
-      </Paper>
-    </Box>
-    {/* <form onSubmit={onSignUp}>
+        </Paper>
+      </Box>
+      {/* <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
