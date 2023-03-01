@@ -7,7 +7,6 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import CreateExercise from './CreateExcercise';
 import FetchingUserExercises from './FetchingUserExercises';
@@ -27,6 +26,7 @@ function FetchingUserTrainingDays({workout_id}){
       return null;
     }
     dispatch(getTrainingDays(+workout_id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 return (

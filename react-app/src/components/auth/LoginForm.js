@@ -23,6 +23,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+
     if (data) {
       setErrors(data);
     }
@@ -54,10 +55,12 @@ const LoginForm = () => {
       {prefersDarkMode ? (<img src={LogoDark} alt="Dark Logo"/>) : (<img src={LogoLight} alt="Light Logo"/>)}
       <Typography variant="h4" sx={{fontWeight: 800}} >Login</Typography>
       <TextField label="Email" variant="outlined" margin="normal" required
+        error={errors.length>0 ? true : false}
         type='email'
         value={email}
         onChange={updateEmail}/>
       <TextField label="Password" variant="outlined" margin="normal" required
+        error={errors.length>0 ? true : false}
         type='password'
         value={password}
         onChange={updatePassword}/>
@@ -67,34 +70,6 @@ const LoginForm = () => {
       </NavLink>
     </Paper>
   </Box>
-    // <form onSubmit={onLogin}>
-    //   <div>
-    //     {errors.map((error, ind) => (
-    //       <div key={ind}>{error}</div>
-    //     ))}
-    //   </div>
-    //   <div>
-    //     <label htmlFor='email'>Email</label>
-    //     <input
-    //       name='email'
-    //       type='text'
-    //       placeholder='Email'
-    //       value={email}
-    //       onChange={updateEmail}
-    //     />
-    //   </div>
-    //   <div>
-    //     <label htmlFor='password'>Password</label>
-    //     <input
-    //       name='password'
-    //       type='password'
-    //       placeholder='Password'
-    //       value={password}
-    //       onChange={updatePassword}
-    //     />
-    //     <button type='submit'>Login</button>
-    //   </div>
-    // </form>
   );
 };
 
