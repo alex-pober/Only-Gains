@@ -14,25 +14,25 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   return (
-    <AppBar position="static" color="inherit" sx={{margin: 1, width: "auto", borderRadius: "25px"}}>
+    <AppBar position="static" color="inherit" sx={{ margin: 1, width: "auto", borderRadius: "25px" }}>
       <Toolbar variant="dregense" >
-          {prefersDarkMode ? (<img src={LogoDark} style={{height: 45}} alt="Dark Logo"/>) : (<img src={LogoLight} style={{height: 45}} alt="Light Logo"/>)}
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          </Typography>
-          {(user)
+        {prefersDarkMode ? (<img src={LogoDark} style={{ height: 45 }} alt="Dark Logo" />) : (<img src={LogoLight} style={{ height: 45 }} alt="Light Logo" />)}
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        </Typography>
+        {(user)
           ? <LogoutButton />
           : <div>
-              <NavLink to="/sign-up" exact={true} style={{textDecoration:"none"}}>
-                <Button >Sign Up</Button>
-              </NavLink>
-              <NavLink to="/login" exact={true} style={{textDecoration:"none"}}>
-                <Button >Login</Button>
-              </NavLink>
-            </div>
-          }
+            <NavLink to="/sign-up" exact={true} style={{ textDecoration: "none" }}>
+              <Button >Sign Up</Button>
+            </NavLink>
+            <NavLink to="/login" exact={true} style={{ textDecoration: "none" }}>
+              <Button >Login</Button>
+            </NavLink>
+          </div>
+        }
 
 
-        </Toolbar>
+      </Toolbar>
     </AppBar>
 
 

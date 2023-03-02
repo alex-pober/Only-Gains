@@ -15,8 +15,8 @@ const LogoutButton = () => {
   return (
   <Link to="/">
     <Tooltip title="Logout">
-      <IconButton>
-          <LogoutIcon onClick={onLogout}/>
+      <IconButton onClick={onLogout}>
+          <LogoutIcon/>
       </IconButton>
     </Tooltip>
   </Link>

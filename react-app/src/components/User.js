@@ -247,11 +247,11 @@ const toggleDrawer = (newOpen) => () => {
             overflow: 'auto',
           }}
         >
-          {Object.values(links).map((value) => {
+          {Object.values(links).map((value, index) => {
             const regex = /\/\/([^,\s]+\.[^,\s]+?)(?=\/|,|\s|$|\?|#)/g;
             const mached = value?.link.match(regex)
             return (
-              <Stack>
+              <Stack key={index}>
                 <Chip
                   component="a"
                   avatar={<Avatar src={`https://icon.horse/icon/${mached}`} />}

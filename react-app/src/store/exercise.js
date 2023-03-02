@@ -4,6 +4,7 @@ const GET_USER_EXERCISES = 'session/GET_USER_EXERCISES'
 const CREATE_EXERCISE = 'session/CREATE_EXERCISE'
 const UPDATE_EXERCISE = 'session/UPDATE_EXERCISE'
 const DELETE_EXERCISE = 'session/DELETE_EXERCISE'
+const CLEAR_EXERCISE = 'session/CLEAER_EXERCISE'
 
 const setAllExercises = (exercises) => ({
   type: GET_USER_EXERCISES,
@@ -23,6 +24,10 @@ const updateExercise = (exercise) => ({
 const deleteExercise = (exercise) => ({
   type: DELETE_EXERCISE,
   payload: exercise
+})
+
+const clearExercise = () => ({
+  type: CLEAR_EXERCISE
 })
 
 const initialState = { exercises: null };
@@ -83,6 +88,10 @@ export const deleteOneExercise = id => async dispatch => {
   }
 }
 
+export const clearAllExercises = () => async dispatch => {
+  dispatch(clearExercise())
+}
+
 export default function reducer(state = initialState, action){
   switch (action.type){
 
@@ -98,6 +107,9 @@ export default function reducer(state = initialState, action){
 
     case DELETE_EXERCISE:
       return _.omit(state, action.payload)
+
+    case CLEAR_EXERCISE:
+      return {}
 
     default:
       return state;

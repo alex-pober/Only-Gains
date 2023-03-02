@@ -43,16 +43,17 @@ const style = {
 function FetchingUserWorkouts(){
   const dispatch = useDispatch();
   const user = useSelector(state => state.session?.user);
-  useEffect(() => {
-    dispatch(getUserWorkouts(user?.id))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
   const workouts = useSelector(state => state.workout)
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("0");
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
   const [notes, setNotes] = useState()
   const [openDelete, setOpenDelete] = useState(false);
+
+  useEffect(() => {
+    dispatch(getUserWorkouts(user?.id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
 
 
   const handleOpen = () => setOpen(true);
@@ -79,11 +80,10 @@ function FetchingUserWorkouts(){
   const handleClickOpenDelete = () => setOpenDelete(true);
   const handleCloseDelete = () => setOpenDelete(false);
 
-  useEffect(() => {
-    setValue(Object.values(workouts)[0]?.id)
+  // useEffect(() => {
+  //   setValue(Object.values(workouts)[0]?.id)
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Object.values(workouts)[0]?.id])
+  // }, [Object.values(workouts)[0]?.id])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -103,17 +103,17 @@ return (
 <>
   <TabContext value={value}>
     <Box display="flex" justifyContent="center" width="100%">
-      <Tabs value={value} onChange={handleChange} scrollButtons="auto" wrapped>
+      <Tabs value={value} onChange={handleChange} scrollButtons="auto" >
         {Object.values(workouts).map((value, index) => {
           return (
-            <Tab label={value?.title} value={value?.id} />
+            <Tab key={index} label={value?.title} value={index.toString()} />
           )
           })}
       </Tabs>
     </Box>
     {Object.values(workouts).map((value, index) => {
         return (
-          <TabPanel value={value?.id} sx={{p: 0, bgcolor: 'background.default'}}>
+          <TabPanel key={index} value={index.toString()} sx={{p: 0, bgcolor: 'background.default'}}>
             <FetchingUserTrainingDays workout_id={value?.id}/>
             <CreateDayModal workout_id={value?.id} />
             <Accordion>
