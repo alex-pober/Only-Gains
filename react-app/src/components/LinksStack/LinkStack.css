@@ -38,19 +38,20 @@
   transform: none !important;
   background-color: #1e1e1e !important;
   margin-top: 8px;
-  outline: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
   transition: all 0.5s, transform 0s;
   margin-block: 16px;
-  translate: 0px -90vh;
+  translate: 0px -90dvh;
 }
 
 
 .box_expanded:nth-child(2) {
-  translate: 0px -90vh;
+  translate: 0px -90dvh;
 }
 
 .box_expanded:nth-child(3) {
-  translate: 0px -90vh;
+  translate: 0px -90dvh;
 }
 
 .box__header {
