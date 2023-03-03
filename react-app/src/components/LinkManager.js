@@ -18,7 +18,7 @@ function LinkManager(){
   const history = useHistory();
   useEffect(() => {
     dispatch(getUserLinks(userState.id))
-  })
+  }, [])
 
   const onDeleteLink = (id) => {
     dispatch(deleteOneLink(id))
@@ -26,7 +26,7 @@ function LinkManager(){
 
   return (
   <>
-   <AppBar color='primary' position="sticky">
+   <AppBar position="sticky">
     <ToolBar>
       <IconButton onClick={() => {history.push(`/user/${userState?.id}`)}}>
         <ArrowBackIosIcon />
@@ -55,14 +55,14 @@ function LinkManager(){
 
   // FALSE render this <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   : <>
-    {Object.values(links).map((value) => {
+    {Object.values(links).map((value, index) => {
       return (
-          <Paper elevation={4} sx={{p: 2, m: 1, borderRadius: '10px',  display: 'flex', justifyContent: "space-between"}}>
+          <Paper key={index} elevation={4} sx={{position: "relative", overflow: "hidden", p: 2, m: 1, borderRadius: '10px',  display: 'flex', justifyContent: "space-between", alignItems: 'center'}}>
             <div>
               <Typography>{value?.title}</Typography>
               <Typography>{value?.link}</Typography>
             </div>
-            <div>
+            <div style={{position: 'absolute', right: 10}}>
               <IconButton onClick={() => onDeleteLink(value?.id)}>
                 <DeleteIcon fontSize="small" sx={{color: 'error.dark'}}/>
               </IconButton>

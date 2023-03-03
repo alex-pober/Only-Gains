@@ -11,7 +11,6 @@ import Paper from '@mui/material/Paper';
 import Link from '@mui/material/Link';
 import EditingExercise from './EditingExercise.js'
 import { useParams } from 'react-router-dom'
-import Skeleton from '@mui/material/Skeleton';
 import Grow from '@mui/material/Grow';
 import LinearProgress from '@mui/material/LinearProgress';
 

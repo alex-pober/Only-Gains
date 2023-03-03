@@ -33,7 +33,7 @@ const updateUrl = (e) => {
   };
 
   return (
-      <Paper component="form" onSubmit={onCreateLink} elevation={1} sx={{maxWidth: '55%', padding: '10px', display:"flex", flexDirection: "column", alignItems: "center", margin: 'auto', borderRadius: '10px'}}>
+      <Paper component="form" onSubmit={onCreateLink} elevation={1} sx={{maxWidth: '70%', padding: '10px', display:"flex", flexDirection: "column", alignItems: "center", margin: 'auto', borderRadius: '10px'}}>
         <Typography variant="h6">Create New Link</Typography>
         <TextField
           type="text"
@@ -57,7 +57,7 @@ const updateUrl = (e) => {
             endAdornment: <InputAdornment position="end"><EditIcon fontSize='small'/></InputAdornment>,
           }}
         />
-        <Button type='submit' sx={{my: 1}} rginTop variant="contained" endIcon={<AddIcon/>}>Add New Link</Button>
+        <Button type='submit' sx={{my: 1}} variant="contained" endIcon={<AddIcon/>}>Add New Link</Button>
       </Paper>
   )
 }
