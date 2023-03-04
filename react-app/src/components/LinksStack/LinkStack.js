@@ -37,7 +37,7 @@ export default function LinkStack({ data }) {
 
       {!open &&
         <>
-          <div style={{ cursor: 'pointer', zIndex: '1', position: 'absolute', width: '100%', height: '82px', left: '0', right: '0', marginLeft: 'auto', marginRight: 'auto', bottom: '0px', flexDirection: "column-reverse", display: 'flex' }}
+          <div style={{cursor: 'pointer', zIndex: '12', position: 'absolute', width: '100%', height: '92px', left: '0', right: '0', marginLeft: 'auto', marginRight: 'auto', bottom: '0px', flexDirection: "column-reverse", display: 'flex' }}
             onClick={() => { setOpen(!open) }}
           >
             <Typography variant="h6" align='right'
@@ -48,7 +48,7 @@ export default function LinkStack({ data }) {
                 lineHeight: "1.66",
                 letterSpacing: "0.03333em",
                 color: '#8b8b8b',
-                marginBottom: '24px'
+                marginBottom: '0px'
               }}
             >
               {data.length} more links
