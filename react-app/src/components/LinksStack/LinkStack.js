@@ -36,23 +36,30 @@ export default function LinkStack({ data }) {
         </Box>}
 
       {!open &&
-        <div style={{cursor: 'pointer', zIndex: '10', position: 'absolute', width: '95%', height: '48px', left: '0', right: '0', marginLeft: 'auto', marginRight: 'auto', bottom: '16px', flexDirection: "column-reverse",  display: 'flex'}}
-          onClick={() => { setOpen(!open) }}
-        >
-          <Typography variant="h6" align='right'
-            sx={{
-              marginRight: '16px',
-              fontWeight: "400",
-              fontSize: "0.75rem",
-              lineHeight: "1.66",
-              letterSpacing: "0.03333em",
-              color: '#8b8b8b',
-              marginBottom: '4px'
-            }}
+        <>
+          <div style={{ cursor: 'pointer', zIndex: '1', position: 'absolute', width: '100%', height: '82px', left: '0', right: '0', marginLeft: 'auto', marginRight: 'auto', bottom: '0px', flexDirection: "column-reverse", display: 'flex' }}
+            onClick={() => { setOpen(!open) }}
+          >
+            <Typography variant="h6" align='right'
+              sx={{
+                marginRight: '40px',
+                fontWeight: "400",
+                fontSize: "0.75rem",
+                lineHeight: "1.66",
+                letterSpacing: "0.03333em",
+                color: '#8b8b8b',
+                marginBottom: '24px'
+              }}
             >
-            {data.length} more links
-          </Typography>
-        </div>}
+              {data.length} more links
+            </Typography>
+          </div>
+          <div style={{ backgroundColor: '#121212', zIndex: '-1', position: 'absolute', width: '100%', height: '82px', left: '0', right: '0', marginLeft: 'auto', marginRight: 'auto', bottom: '0px', flexDirection: "column-reverse", display: 'flex' }}
+          >
+
+          </div>
+        </>
+      }
 
       <Backdrop open={open} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.9)' }} onClick={() => { setOpen(!open) }}>
       </Backdrop>
