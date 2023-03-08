@@ -16,9 +16,9 @@ export default function LinkStack({ data }) {
     <>
       {
         Object.values(data).map((value, index) => {
-          const regex = /\/\/([^,\s]+\.[^,\s]+?)(?=\/|,|\s|$|\?|#)/g;
+          const regex = /\/\/([^,/\s]+\.[^,/\s]+?)(?=\/|,|\s|$|\?|#)/g;
           const mached = value?.link.match(regex)
-
+          console.log(mached)
           return (
             <Box key={index} className={"box" + (open ? ' box_expanded' : '')}
               component='a'
@@ -27,7 +27,7 @@ export default function LinkStack({ data }) {
               href={value?.link}
               target="_blank"
             >
-              <Avatar alt={value?.title} src={`https://icon.horse/icon/${mached}`} sx={{ position: 'inherit', width: 24, height: 24, mx: 1 }} />
+              <Avatar alt={value?.title} src={`https://www.google.com/s2/favicons?domain=https:${mached}&sz=24`} sx={{ position: 'inherit', width: 24, height: 24, mx: 1 }} />
               <Typography sx={{ fontSize: '1rem' }} align='center' variant="h6" my={0.5}>{value?.title}</Typography>
             </Box>
           )
