@@ -113,10 +113,10 @@ export default function PublicPage() {
             <TabPanel key={id} value={index.toString()} sx={{ p: 0, mb: "60px", bgcolor: 'background.default' }} >
               <FetchingUserTrainingDays workout_id={id} />
               {/* \/\/\/\/\/\/\/\/\/\/\/\/SEE NOTES POPUP BELOW \/\/\/\/\/\/\/\/\/\/\/\/ */}
-              <Box textAlign='center' sx={{m: 2, mb: '96px'}}>
+              <Box textAlign='center' sx={{ m: 2, mb: '96px' }}>
                 <Button size="small" variant="contained" onClick={() => setOpenNotes(true)}
-                  align='center' sx={{alignItems: 'flex-end'}}
-                >See Notes{<DescriptionIcon sx={{ml: 0.5}}/>}
+                  align='center' sx={{ alignItems: 'flex-end' }}
+                >See Notes{<DescriptionIcon sx={{ ml: 0.5 }} />}
                 </Button>
               </Box>
               <Dialog
@@ -168,9 +168,7 @@ export default function PublicPage() {
       </TabContext>
 
       {links.length > 0 &&
-        <Box sx={{position: 'fixed', bottom: '0', height: '36px', width: 'inherit',  maxWidth: 'inherit' }}>
-            <LinkStack data={links} />
-        </Box>
+        <LinkStack data={links} />
       }
 
     </Container>

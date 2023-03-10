@@ -29,7 +29,6 @@ function FetchingUserExercises({ day_id }) {
         tableRef.current.scrollIntoView({block: 'end', behavior: 'smooth'})}, 500)
 
         return(() => clearTimeout())
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
